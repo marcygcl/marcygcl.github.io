@@ -1,105 +1,191 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-<meta charset="UTF-8">
-<title>Marcy Castro | Data & Public Policy</title>
-
 <style>
+  :root{
+    /* Monet palette */
+    --paper: #fbf7ef;
+    --ink: #0b1f2a;
+    --muted: rgba(11,31,42,.68);
 
-body{
-font-family: Arial;
-background:#0f172a;
-color:white;
-margin:0;
-padding:40px;
-}
+    --pond: #2a7f78;      /* teal */
+    --lilac: #a78bd6;     /* lavender */
+    --sun: #d6b35a;       /* soft gold */
+    --rose: #d88ea3;      /* dusty rose */
 
-.container{
-max-width:900px;
-margin:auto;
-}
+    --card: rgba(255,255,255,.66);
+    --border: rgba(11,31,42,.12);
+    --shadow: 0 16px 40px rgba(11,31,42,.10);
 
-h1{
-font-size:42px;
-}
+    --radius: 22px;
+    --max: 980px;
+  }
 
-.subtitle{
-color:#94a3b8;
-}
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    color: var(--ink);
+    background:
+      radial-gradient(1200px 800px at 10% 10%, rgba(167,139,214,.20), transparent 55%),
+      radial-gradient(900px 700px at 85% 20%, rgba(214,179,90,.18), transparent 55%),
+      radial-gradient(1100px 900px at 65% 85%, rgba(42,127,120,.18), transparent 60%),
+      linear-gradient(180deg, var(--paper), #f6fbfb 65%, var(--paper));
+  }
 
-.card{
-background:#1e293b;
-padding:20px;
-border-radius:10px;
-margin-top:20px;
-}
+  /* subtle “paper grain” */
+  body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
+    opacity:.18;
+    mix-blend-mode:multiply;
+  }
 
-a{
-color:#38bdf8;
-text-decoration:none;
-}
+  a{ color: var(--pond); text-decoration:none; }
+  a:hover{ text-decoration:underline; }
 
-.lang{
-position:absolute;
-top:20px;
-right:30px;
-}
+  .wrap{
+    width:min(var(--max), calc(100% - 40px));
+    margin: 0 auto;
+    position:relative;
+  }
 
+  /* Top nav */
+  .nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:22px 0 10px;
+  }
+  .brand{
+    display:flex; gap:10px; align-items:center;
+    font-weight:700;
+    letter-spacing:.2px;
+  }
+  .dot{
+    width:10px; height:10px; border-radius:50%;
+    background: linear-gradient(135deg, var(--pond), var(--lilac), var(--sun));
+    box-shadow: 0 6px 18px rgba(42,127,120,.25);
+  }
+  .nav a{ color: var(--ink); opacity:.78; margin-left:14px; font-size:14px; }
+  .nav a:hover{ opacity:1; text-decoration:none; }
+
+  /* Hero */
+  .hero{
+    padding: 54px 0 26px;
+    display:grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap:28px;
+    align-items:start;
+  }
+  .kicker{
+    display:inline-flex;
+    gap:10px;
+    align-items:center;
+    font-size:13px;
+    color: var(--muted);
+    padding:10px 12px;
+    border: 1px solid var(--border);
+    border-radius:999px;
+    background: rgba(255,255,255,.45);
+    backdrop-filter: blur(6px);
+  }
+  h1{
+    font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
+    font-size: clamp(38px, 5vw, 56px);
+    line-height:1.02;
+    margin:18px 0 12px;
+    letter-spacing:-.6px;
+  }
+  .sub{
+    font-size:16px;
+    color: var(--muted);
+    line-height:1.6;
+    max-width: 58ch;
+  }
+  .cta{
+    display:flex; gap:12px; flex-wrap:wrap;
+    margin-top:18px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:12px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,.58);
+    box-shadow: 0 10px 30px rgba(11,31,42,.08);
+    color: var(--ink);
+    font-size:14px;
+    font-weight:600;
+  }
+  .btn.primary{
+    background: linear-gradient(135deg, rgba(42,127,120,.92), rgba(167,139,214,.55));
+    color: white;
+    border-color: rgba(255,255,255,.25);
+  }
+
+  /* Cards */
+  .card{
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 18px 18px;
+    backdrop-filter: blur(8px);
+  }
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap:14px;
+    margin: 18px 0 0;
+  }
+  .col-6{ grid-column: span 6; }
+  .col-12{ grid-column: span 12; }
+
+  h2{
+    font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
+    font-size: 22px;
+    margin: 0 0 10px;
+    letter-spacing:-.2px;
+  }
+  .meta{
+    font-size:13px;
+    color: var(--muted);
+    line-height:1.5;
+  }
+  .tagrow{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+  .tag{
+    font-size:12px;
+    padding:6px 10px;
+    border-radius:999px;
+    border:1px solid var(--border);
+    background: rgba(255,255,255,.45);
+    color: rgba(11,31,42,.82);
+  }
+  .tag.teal{ border-color: rgba(42,127,120,.35); }
+  .tag.lilac{ border-color: rgba(167,139,214,.40); }
+  .tag.sun{ border-color: rgba(214,179,90,.45); }
+  .tag.rose{ border-color: rgba(216,142,163,.40); }
+
+  /* Section spacing */
+  section{ padding: 18px 0; }
+  .section-title{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
+  .section-title p{ margin:0; color: var(--muted); font-size:13px; }
+
+  /* Footer */
+  footer{
+    padding: 34px 0 60px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  /* Responsive */
+  @media (max-width: 880px){
+    .hero{ grid-template-columns: 1fr; }
+    .col-6{ grid-column: span 12; }
+    .nav{ flex-direction:column; align-items:flex-start; gap:10px; }
+  }
 </style>
-</head>
-
-<body>
-
-<div class="lang">
-<a href="/es">Español</a>
-</div>
-
-<div class="container">
-
-<h1>Marcy Castro</h1>
-
-<p class="subtitle">
-Computational Analysis & Public Policy | Data Science | Civic Tech
-</p>
-
-<div class="card">
-
-<h2>About me</h2>
-
-<p>
-I am a data scientist and policy researcher interested in how data and technology
-can improve public decision-making and civic services.
-</p>
-
-<p>
-Currently pursuing a Master's in Computational Analysis and Public Policy
-at the University of Chicago.
-</p>
-
-</div>
-
-<div class="card">
-
-<h2>Projects</h2>
-
-<p>
-Projects will be added soon.
-</p>
-
-</div>
-
-<div class="card">
-
-<h2>Links</h2>
-
-<p>
-<a href="https://github.com/marcygcl">GitHub</a>
-</p>
-
-</div>
-
-</div>
-
-</body>
-</html>
