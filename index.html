@@ -1,191 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Marcy Castro Livano</title>
+
 <style>
-  :root{
-    /* Monet palette */
-    --paper: #fbf7ef;
-    --ink: #0b1f2a;
-    --muted: rgba(11,31,42,.68);
 
-    --pond: #2a7f78;      /* teal */
-    --lilac: #a78bd6;     /* lavender */
-    --sun: #d6b35a;       /* soft gold */
-    --rose: #d88ea3;      /* dusty rose */
+:root{
 
-    --card: rgba(255,255,255,.66);
-    --border: rgba(11,31,42,.12);
-    --shadow: 0 16px 40px rgba(11,31,42,.10);
+--paper:#fbf7ef;
+--ink:#0b1f2a;
 
-    --radius: 22px;
-    --max: 980px;
-  }
+--pond:#2a7f78;
+--lilac:#a78bd6;
+--sun:#d6b35a;
+--rose:#d88ea3;
 
-  *{ box-sizing:border-box; }
-  html{ scroll-behavior:smooth; }
-  body{
-    margin:0;
-    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
-    color: var(--ink);
-    background:
-      radial-gradient(1200px 800px at 10% 10%, rgba(167,139,214,.20), transparent 55%),
-      radial-gradient(900px 700px at 85% 20%, rgba(214,179,90,.18), transparent 55%),
-      radial-gradient(1100px 900px at 65% 85%, rgba(42,127,120,.18), transparent 60%),
-      linear-gradient(180deg, var(--paper), #f6fbfb 65%, var(--paper));
-  }
+--card:rgba(255,255,255,0.75);
+--border:rgba(0,0,0,0.08);
 
-  /* subtle “paper grain” */
-  body:before{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
-    opacity:.18;
-    mix-blend-mode:multiply;
-  }
+}
 
-  a{ color: var(--pond); text-decoration:none; }
-  a:hover{ text-decoration:underline; }
+body{
 
-  .wrap{
-    width:min(var(--max), calc(100% - 40px));
-    margin: 0 auto;
-    position:relative;
-  }
+margin:0;
+font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
 
-  /* Top nav */
-  .nav{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:22px 0 10px;
-  }
-  .brand{
-    display:flex; gap:10px; align-items:center;
-    font-weight:700;
-    letter-spacing:.2px;
-  }
-  .dot{
-    width:10px; height:10px; border-radius:50%;
-    background: linear-gradient(135deg, var(--pond), var(--lilac), var(--sun));
-    box-shadow: 0 6px 18px rgba(42,127,120,.25);
-  }
-  .nav a{ color: var(--ink); opacity:.78; margin-left:14px; font-size:14px; }
-  .nav a:hover{ opacity:1; text-decoration:none; }
+background:
+radial-gradient(circle at 20% 20%, rgba(167,139,214,.25), transparent 45%),
+radial-gradient(circle at 85% 25%, rgba(214,179,90,.20), transparent 40%),
+radial-gradient(circle at 60% 90%, rgba(42,127,120,.20), transparent 50%),
+var(--paper);
 
-  /* Hero */
-  .hero{
-    padding: 54px 0 26px;
-    display:grid;
-    grid-template-columns: 1.15fr .85fr;
-    gap:28px;
-    align-items:start;
-  }
-  .kicker{
-    display:inline-flex;
-    gap:10px;
-    align-items:center;
-    font-size:13px;
-    color: var(--muted);
-    padding:10px 12px;
-    border: 1px solid var(--border);
-    border-radius:999px;
-    background: rgba(255,255,255,.45);
-    backdrop-filter: blur(6px);
-  }
-  h1{
-    font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
-    font-size: clamp(38px, 5vw, 56px);
-    line-height:1.02;
-    margin:18px 0 12px;
-    letter-spacing:-.6px;
-  }
-  .sub{
-    font-size:16px;
-    color: var(--muted);
-    line-height:1.6;
-    max-width: 58ch;
-  }
-  .cta{
-    display:flex; gap:12px; flex-wrap:wrap;
-    margin-top:18px;
-  }
-  .btn{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    padding:12px 14px;
-    border-radius: 999px;
-    border: 1px solid var(--border);
-    background: rgba(255,255,255,.58);
-    box-shadow: 0 10px 30px rgba(11,31,42,.08);
-    color: var(--ink);
-    font-size:14px;
-    font-weight:600;
-  }
-  .btn.primary{
-    background: linear-gradient(135deg, rgba(42,127,120,.92), rgba(167,139,214,.55));
-    color: white;
-    border-color: rgba(255,255,255,.25);
-  }
+color:var(--ink);
 
-  /* Cards */
-  .card{
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 18px 18px;
-    backdrop-filter: blur(8px);
-  }
-  .grid{
-    display:grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap:14px;
-    margin: 18px 0 0;
-  }
-  .col-6{ grid-column: span 6; }
-  .col-12{ grid-column: span 12; }
+}
 
-  h2{
-    font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
-    font-size: 22px;
-    margin: 0 0 10px;
-    letter-spacing:-.2px;
-  }
-  .meta{
-    font-size:13px;
-    color: var(--muted);
-    line-height:1.5;
-  }
-  .tagrow{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
-  .tag{
-    font-size:12px;
-    padding:6px 10px;
-    border-radius:999px;
-    border:1px solid var(--border);
-    background: rgba(255,255,255,.45);
-    color: rgba(11,31,42,.82);
-  }
-  .tag.teal{ border-color: rgba(42,127,120,.35); }
-  .tag.lilac{ border-color: rgba(167,139,214,.40); }
-  .tag.sun{ border-color: rgba(214,179,90,.45); }
-  .tag.rose{ border-color: rgba(216,142,163,.40); }
+.container{
 
-  /* Section spacing */
-  section{ padding: 18px 0; }
-  .section-title{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
-  .section-title p{ margin:0; color: var(--muted); font-size:13px; }
+max-width:1000px;
+margin:auto;
+padding:40px 20px;
 
-  /* Footer */
-  footer{
-    padding: 34px 0 60px;
-    color: var(--muted);
-    font-size: 13px;
-  }
+}
 
-  /* Responsive */
-  @media (max-width: 880px){
-    .hero{ grid-template-columns: 1fr; }
-    .col-6{ grid-column: span 12; }
-    .nav{ flex-direction:column; align-items:flex-start; gap:10px; }
-  }
+nav{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:40px;
+
+}
+
+nav a{
+
+margin-left:20px;
+color:var(--ink);
+text-decoration:none;
+font-size:14px;
+
+}
+
+nav a:hover{
+
+color:var(--pond);
+
+}
+
+.hero{
+
+margin-top:60px;
+margin-bottom:60px;
+
+}
+
+.hero h1{
+
+font-family: Georgia, serif;
+font-size:56px;
+margin-bottom:10px;
+
+}
+
+.subtitle{
+
+font-size:18px;
+color:#555;
+margin-bottom:20px;
+
+}
+
+.buttons{
+
+margin-top:25px;
+
+}
+
+.button{
+
+display:inline-block;
+margin-right:12px;
+padding:12px 16px;
+
+border-radius:999px;
+background:var(--pond);
+color:white;
+text-decoration:none;
+font-size:14px;
+
+}
+
+.button.secondary{
+
+background:white;
+color:var(--ink);
+border:1px solid var(--border);
+
+}
+
+.section{
+
+margin-top:60px;
+
+}
+
+.section h2{
+
+font-family: Georgia, serif;
+font-size:28px;
+margin-bottom:20px;
+
+}
+
+.grid{
+
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+
+}
+
+.card{
+
+background:var(--card);
+border:1px solid var(--border);
+border-radius:16px;
+padding:20px;
+
+}
+
+.card h3{
+
+margin-top:0;
+font-size:18px;
+
+}
+
+.card p{
+
+font-size:14px;
+line-height:1.6;
+
+}
+
+.tags{
+
+margin-top:10px;
+
+}
+
+.tag{
+
+display:inline-block;
+padding:6px 10px;
+font-size:12px;
+border-radius:999px;
+border:1px solid var(--border);
+margin-right:6px;
+margin-top:4px;
+
+}
+
+footer{
+
+margin-top:80px;
+font-size:13px;
+color:#777;
+
+}
+
+@media (max-width:800px){
+
+.grid{
+
+grid-template-columns:1fr;
+
+}
+
+.hero h1{
+
+font-size:40px;
+
+}
+
+}
+
 </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+<nav>
+
+<div><strong>Marcy Castro Livano</strong></div>
+
+<div>
+
+<a href="#research">Research</a>
+<a href="#data">Data Science</a>
+<a href="#projects">Projects</a>
+<a href="#writing">Writing</a>
+<a href="/cv.pdf">CV</a>
+<a href="/es">ES</a>
+
+</div>
+
+</nav>
+
+
+
+<section class="hero">
+
+<h1>Marcy Castro Livano</h1>
+
+<p class="subtitle">
+
+Computational Social Scientist | Data Science for Public Policy  
+University of Chicago — MS in Computational Analysis and Public Policy
+
+</p>
+
+<p>
+
+I work at the intersection of data science, impact evaluation, and
+public policy. My research focuses on using administrative data,
+causal inference, and computational tools to improve public programs
+and civic services.
+
+</p>
+
+<div class="buttons">
+
+<a class="button" href="#projects">View Projects</a>
+
+<a class="button secondary" href="/cv.pdf">Download CV</a>
+
+<a class="button secondary" href="https://github.com/marcygcl">GitHub</a>
+
+</div>
+
+</section>
+
+
+
+<section id="research" class="section">
+
+<h2>Research</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>Water Access and Child Mortality</h3>
+
+<p>
+
+Research Assistant at the Development Innovation Lab (University of Chicago).
+Supporting experimental design, statistical power calculations,
+and survey development for impact evaluations of water access
+interventions.
+
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>Vaccination Uptake and Last-Mile Delivery</h3>
+
+<p>
+
+Research consulting work with Wageningen University and Yale University
+evaluating how decentralized delivery systems influence vaccination
+uptake in rural communities.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section id="data" class="section">
+
+<h2>Data Science & Engineering</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>Legal Case Data Pipeline</h3>
+
+<p>
+
+Designed an automated Python ETL pipeline for the National Pension Office
+in Peru, transforming over 45,000 noisy legal-case records into a unified
+database used operationally by more than 200 attorneys.
+
+</p>
+
+<div class="tags">
+
+<span class="tag">Python</span>
+<span class="tag">ETL</span>
+<span class="tag">Power BI</span>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>Administrative Data Matching</h3>
+
+<p>
+
+Developed fuzzy-matching algorithms to reconcile large administrative
+datasets across public institutions, improving accuracy in policy
+analysis workflows.
+
+</p>
+
+<div class="tags">
+
+<span class="tag">Python</span>
+<span class="tag">Data Cleaning</span>
+<span class="tag">Algorithms</span>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section id="projects" class="section">
+
+<h2>Projects</h2>
+
+<div class="card">
+
+<h3>CivicPulse</h3>
+
+<p>
+
+CivicPulse is an interactive dashboard analyzing Chicago's 311 service
+requests, demographic data, and public spending to identify mismatches
+between civic demand and government resource allocation.
+
+</p>
+
+<div class="tags">
+
+<span class="tag">Civic Tech</span>
+<span class="tag">Dash</span>
+<span class="tag">Python</span>
+<span class="tag">Data Visualization</span>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section id="writing" class="section">
+
+<h2>Writing & Policy Work</h2>
+
+<div class="card">
+
+<p>
+
+Selected work includes research and policy analysis on education policy,
+administrative data systems, and impact evaluation in Latin America
+through collaborations with the Inter-American Development Bank,
+J-PAL, and the Ministry of Education of Peru.
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<footer>
+
+© 2026 Marcy Castro Livano  
+Inspired by Monet's Water Lilies
+
+</footer>
+
+
+</div>
+
+</body>
+
+</html>
