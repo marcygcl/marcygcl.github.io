@@ -3,28 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Marcy Castro Livano</title>
   <meta name="description" content="Marcy Castro Livano — Computational Social Scientist (MSCAPP, University of Chicago). Data science + impact evaluation + public policy." />
 
   <style>
+    /* -------------------------------------------------
+      Monet minimal (no yellow/black):
+      Light = misty paper + sea-glass
+      Dark  = blue dusk + moonlit teal
+    -------------------------------------------------- */
+
     :root{
-      --bg:#fbf7ef;
-      --text:#0b1f2a;
-      --accent:#2a7f78;          /* Monet teal */
+      --bg:#f6f3ee;             /* misty paper */
+      --text:#11222c;           /* deep ink (not black) */
+      --muted:rgba(17,34,44,.62);
+      --accent:#2a7f78;         /* Monet teal */
+      --accent2:#6aa7a0;        /* sea-glass */
       --card:#ffffff;
-      --border:rgba(0,0,0,0.08);
-      --muted:rgba(11,31,42,0.62);
+      --border:rgba(17,34,44,0.10);
+      --shadow:0 18px 45px rgba(17,34,44,0.10);
+      --radius:20px;
     }
 
     html[data-theme="dark"]{
-      --bg:#0f1419;
-      --text:#e8edf2;
-      --accent:#7fc7c2;
-      --card:#1a2228;
-      --border:rgba(255,255,255,0.08);
-      --muted:rgba(232,237,242,0.65);
+      --bg:#0f1620;             /* blue dusk */
+      --text:#e8eef6;           /* soft paper-white */
+      --muted:rgba(232,238,246,.68);
+      --accent:#7fc7c2;         /* moonlit teal */
+      --accent2:#8fb0ff;        /* lilac-blue */
+      --card:#141f2b;           /* deep slate */
+      --border:rgba(232,238,246,0.10);
+      --shadow:0 22px 60px rgba(0,0,0,0.35);
     }
+
+    *{ box-sizing:border-box; }
 
     body{
       margin:0;
@@ -34,10 +46,31 @@
       transition: background .25s ease, color .25s ease;
     }
 
+    /* subtle Monet wash */
+    .wash{
+      position:fixed;
+      inset:-35vh -20vw;
+      pointer-events:none;
+      z-index:-1;
+      filter:blur(70px);
+      opacity:.55;
+      background:
+        radial-gradient(40% 35% at 18% 22%, rgba(106,167,160,.22), transparent 60%),
+        radial-gradient(40% 40% at 78% 28%, rgba(143,176,255,.16), transparent 62%),
+        radial-gradient(35% 40% at 55% 78%, rgba(42,127,120,.12), transparent 60%);
+    }
+    html[data-theme="dark"] .wash{
+      opacity:.52;
+      background:
+        radial-gradient(40% 35% at 18% 22%, rgba(127,199,194,.18), transparent 60%),
+        radial-gradient(40% 40% at 78% 28%, rgba(143,176,255,.12), transparent 62%),
+        radial-gradient(35% 40% at 55% 78%, rgba(106,167,160,.10), transparent 60%);
+    }
+
     .container{
-      max-width:700px;
+      max-width:720px;
       margin:auto;
-      padding:60px 20px;
+      padding:64px 20px 70px;
       text-align:center;
     }
 
@@ -48,7 +81,8 @@
       object-fit:cover;
       margin-bottom:18px;
       border:1px solid var(--border);
-      background: linear-gradient(135deg, rgba(42,127,120,.18), rgba(127,199,194,.10));
+      box-shadow: var(--shadow);
+      background: linear-gradient(135deg, rgba(42,127,120,.18), rgba(143,176,255,.10));
     }
 
     h1{
@@ -61,23 +95,22 @@
     .subtitle{
       color:var(--muted);
       font-size:16px;
-      margin-bottom:18px;
+      margin:0 0 18px;
       line-height:1.35;
       white-space:pre-line;
     }
 
     .bio{
       font-size:16px;
-      line-height:1.6;
+      line-height:1.65;
       margin:0 auto 26px;
       max-width:62ch;
       color:var(--text);
     }
 
     .social{
-      margin-bottom:26px;
+      margin-bottom:24px;
     }
-
     .social a{
       margin:0 10px;
       font-size:15px;
@@ -86,7 +119,6 @@
       border-bottom:1px solid transparent;
       padding-bottom:2px;
     }
-
     .social a:hover{
       border-bottom:1px solid var(--accent);
     }
@@ -98,7 +130,6 @@
       flex-wrap:wrap;
       margin-top:4px;
     }
-
     .button{
       padding:10px 16px;
       border-radius:999px;
@@ -109,16 +140,14 @@
       font-size:14px;
       transition: transform .12s ease, border-color .12s ease;
     }
-
     .button:hover{
       transform: translateY(-1px);
       border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
     }
-
     .button.primary{
       background:var(--accent);
       color:white;
-      border-color: transparent;
+      border-color:transparent;
     }
 
     .top-controls{
@@ -130,39 +159,101 @@
       align-items:center;
       z-index:10;
     }
-
     .chip{
       border:1px solid var(--border);
-      background:var(--card);
+      background: color-mix(in srgb, var(--card) 92%, transparent);
       border-radius:999px;
       padding:8px 10px;
       font-size:13px;
       cursor:pointer;
       user-select:none;
       line-height:1;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    }
+    html[data-theme="dark"] .chip{
+      box-shadow: 0 12px 30px rgba(0,0,0,0.28);
+    }
+
+    /* sections */
+    .section{
+      margin-top:44px;
+      text-align:left;
+      background: color-mix(in srgb, var(--card) 92%, transparent);
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      padding:18px;
+      box-shadow: var(--shadow);
+    }
+    .section h2{
+      margin:0 0 10px;
+      font-size:13px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--muted);
+      font-weight:650;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
+      margin-top:10px;
+    }
+    .card{
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:14px;
+      background: color-mix(in srgb, var(--card) 96%, transparent);
+    }
+    .card strong{
+      display:block;
+      font-size:15px;
+      margin-bottom:6px;
+      color:var(--text);
+    }
+    .card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.55;
+      font-size:14px;
+    }
+    .pillrow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:10px;
+    }
+    .pilltag{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      color:var(--muted);
+      background: transparent;
     }
 
     footer{
       margin-top:56px;
       font-size:13px;
       color:var(--muted);
+      text-align:center;
     }
 
-    /* Language handling (safe defaults; never blank) */
+    /* i18n safe (never blank) */
     [data-i18n]{ display:none; }
     html[data-lang="en"] [data-i18n="en"]{ display:block; }
     html[data-lang="es"] [data-i18n="es"]{ display:block; }
 
-    /* Slightly smaller on mobile */
     @media (max-width:480px){
-      .container{ padding-top:48px; }
+      .container{ padding-top:52px; }
       h1{ font-size:34px; }
       img.profile{ width:140px; height:140px; }
+      .section{ padding:16px; }
     }
   </style>
 </head>
 
 <body>
+  <div class="wash" aria-hidden="true"></div>
 
   <div class="top-controls">
     <div class="chip" id="langToggle" title="Language">EN</div>
@@ -170,22 +261,15 @@
   </div>
 
   <div class="container">
-
-    <!-- If profile.jpg is missing, the image will show broken icon.
-         Optional: add onerror fallback. -->
-    <img class="profile" src="profile.jpg" alt="Marcy Castro Livano" onerror="this.style.display='none'">
+    <img class="profile" src="profile.jpg" alt="Marcy Castro Livano (avatar)" onerror="this.style.display='none'">
 
     <h1>Marcy Castro Livano</h1>
 
-    <div class="subtitle" data-i18n="en">
-Computational Social Scientist
-University of Chicago — MSCAPP
-    </div>
+    <div class="subtitle" data-i18n="en">Computational Social Scientist
+University of Chicago — MSCAPP</div>
 
-    <div class="subtitle" data-i18n="es">
-Científica Social Computacional
-University of Chicago — MSCAPP
-    </div>
+    <div class="subtitle" data-i18n="es">Científica Social Computacional
+University of Chicago — MSCAPP</div>
 
     <div class="bio" data-i18n="en">
       I work at the intersection of data science, impact evaluation, and public policy.
@@ -205,7 +289,6 @@ University of Chicago — MSCAPP
     </div>
 
     <div class="buttons">
-      <!-- Option A (recommended now): anchors inside this page -->
       <a class="button primary" href="#projects" data-i18n="en">Projects</a>
       <a class="button primary" href="#projects" data-i18n="es">Proyectos</a>
 
@@ -215,54 +298,116 @@ University of Chicago — MSCAPP
       <a class="button" href="cv.pdf" target="_blank" rel="noopener noreferrer">CV</a>
     </div>
 
-    <!-- Simple sections so buttons don’t 404 -->
-    <div id="projects" style="margin-top:46px;"></div>
-    <footer data-i18n="en">© <span id="year"></span> Marcy Castro Livano</footer>
-    <footer data-i18n="es">© <span id="year2"></span> Marcy Castro Livano</footer>
+    <!-- PROJECTS -->
+    <div id="projects" class="section">
+      <h2 data-i18n="en">Projects</h2>
+      <h2 data-i18n="es">Proyectos</h2>
 
+      <div class="grid">
+        <div class="card">
+          <strong>CivicPulse (Chicago)</strong>
+          <p data-i18n="en">
+            Coming soon: an interactive dashboard that shows where 311 civic complaints and public spending do not align —
+            built around a clear narrative (scale → inequality → location → drivers → policy mismatch).
+          </p>
+          <p data-i18n="es">
+            Próximamente: un dashboard interactivo que muestra dónde los reclamos 311 y el gasto público no se alinean —
+            construido con una narrativa clara (escala → desigualdad → ubicación → drivers → desajuste de política).
+          </p>
+          <div class="pillrow">
+            <span class="pilltag">Admin data</span>
+            <span class="pilltag">Causal + EDA</span>
+            <span class="pilltag">Dashboards</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <strong>Impact Evaluation & Data Systems</strong>
+          <p data-i18n="en">
+            Coming soon: short write-ups and reproducible pipelines from field research and RCT work —
+            from data cleaning to policy-facing results.
+          </p>
+          <p data-i18n="es">
+            Próximamente: notas cortas y pipelines reproducibles de investigación de campo y RCTs —
+            desde limpieza de datos hasta resultados para decisiones de política.
+          </p>
+          <div class="pillrow">
+            <span class="pilltag">RCT design</span>
+            <span class="pilltag">Reproducibility</span>
+            <span class="pilltag">Policy translation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESEARCH -->
+    <div id="research" class="section">
+      <h2 data-i18n="en">Research</h2>
+      <h2 data-i18n="es">Investigación</h2>
+
+      <div class="card">
+        <strong data-i18n="en">Focus: service delivery + civic accountability</strong>
+        <strong data-i18n="es">Enfoque: servicios públicos + rendición de cuentas</strong>
+
+        <p data-i18n="en">
+          I’m interested in where public systems and lived experience diverge — when administrative signals show need,
+          but resources and outcomes don’t match. I build tools that make this mismatch visible and actionable.
+        </p>
+        <p data-i18n="es">
+          Me interesa dónde los sistemas públicos y la experiencia cotidiana divergen — cuando las señales administrativas reflejan necesidad,
+          pero los recursos y resultados no se alinean. Construyo herramientas que vuelven ese desajuste visible y accionable.
+        </p>
+
+        <div class="pillrow">
+          <span class="pilltag" data-i18n="en">Admin data + equity</span>
+          <span class="pilltag" data-i18n="es">Datos admin + equidad</span>
+          <span class="pilltag">Causal inference</span>
+          <span class="pilltag">Civic tech</span>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      © <span id="year"></span> Marcy Castro Livano
+    </footer>
   </div>
 
   <script>
     // Year
-    const y = new Date().getFullYear();
-    document.getElementById("year").textContent = y;
-    document.getElementById("year2").textContent = y;
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Theme: load saved or default light
+    // Theme
     const html = document.documentElement;
+    const themeBtn = document.getElementById("themeToggle");
     const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark" || savedTheme === "light") {
-      html.dataset.theme = savedTheme;
-    }
-    // Update icon
+    if (savedTheme === "dark" || savedTheme === "light") html.dataset.theme = savedTheme;
+
     function syncThemeIcon(){
-      const btn = document.getElementById("themeToggle");
-      btn.textContent = (html.dataset.theme === "dark") ? "☀️" : "🌙";
+      themeBtn.textContent = (html.dataset.theme === "dark") ? "☀️" : "🌙";
     }
     syncThemeIcon();
 
-    document.getElementById("themeToggle").addEventListener("click", () => {
+    themeBtn.addEventListener("click", () => {
       html.dataset.theme = (html.dataset.theme === "dark") ? "light" : "dark";
       localStorage.setItem("theme", html.dataset.theme);
       syncThemeIcon();
     });
 
-    // Language: load saved or default EN
+    // Language
+    const langBtn = document.getElementById("langToggle");
     const savedLang = localStorage.getItem("lang");
     html.dataset.lang = (savedLang === "es") ? "es" : "en";
 
     function syncLangChip(){
-      const btn = document.getElementById("langToggle");
-      btn.textContent = (html.dataset.lang === "es") ? "ES" : "EN";
+      langBtn.textContent = (html.dataset.lang === "es") ? "ES" : "EN";
     }
     syncLangChip();
 
-    document.getElementById("langToggle").addEventListener("click", () => {
+    langBtn.addEventListener("click", () => {
       html.dataset.lang = (html.dataset.lang === "en") ? "es" : "en";
       localStorage.setItem("lang", html.dataset.lang);
       syncLangChip();
     });
   </script>
-
 </body>
 </html>
