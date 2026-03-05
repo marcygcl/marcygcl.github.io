@@ -1,42 +1,235 @@
-<section id="projects">
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
 
-<div class="section-title">
-<h2>Projects</h2>
-<p>Selected builds</p>
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Marcy Castro Livano</title>
+
+<style>
+
+:root{
+
+--bg:#fbf7ef;
+--text:#0b1f2a;
+--accent:#2a7f78;
+--card:#ffffff;
+--border:rgba(0,0,0,0.08);
+
+}
+
+html[data-theme="dark"]{
+
+--bg:#0f1419;
+--text:#e8edf2;
+--accent:#7fc7c2;
+--card:#1a2228;
+--border:rgba(255,255,255,0.08);
+
+}
+
+body{
+
+margin:0;
+font-family: system-ui, -apple-system, sans-serif;
+background:var(--bg);
+color:var(--text);
+transition:all .3s ease;
+
+}
+
+.container{
+
+max-width:700px;
+margin:auto;
+padding:60px 20px;
+text-align:center;
+
+}
+
+img.profile{
+
+width:160px;
+height:160px;
+border-radius:100%;
+object-fit:cover;
+margin-bottom:20px;
+
+}
+
+h1{
+
+font-family: Georgia, serif;
+font-size:38px;
+margin-bottom:8px;
+
+}
+
+.subtitle{
+
+color:gray;
+font-size:16px;
+margin-bottom:20px;
+
+}
+
+.bio{
+
+font-size:16px;
+line-height:1.6;
+margin-bottom:30px;
+
+}
+
+.social{
+
+margin-bottom:30px;
+
+}
+
+.social a{
+
+margin:0 10px;
+font-size:20px;
+text-decoration:none;
+color:var(--text);
+
+}
+
+.buttons{
+
+display:flex;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
+
+}
+
+.button{
+
+padding:10px 16px;
+border-radius:20px;
+border:1px solid var(--border);
+background:var(--card);
+text-decoration:none;
+color:var(--text);
+font-size:14px;
+
+}
+
+.button.primary{
+
+background:var(--accent);
+color:white;
+
+}
+
+.theme-toggle{
+
+position:absolute;
+top:20px;
+right:20px;
+cursor:pointer;
+font-size:18px;
+
+}
+
+footer{
+
+margin-top:60px;
+font-size:13px;
+color:gray;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="theme-toggle" onclick="toggleTheme()">🌙</div>
+
+<div class="container">
+
+<img class="profile" src="profile.jpg">
+
+<h1>Marcy Castro Livano</h1>
+
+<div class="subtitle">
+
+Computational Social Scientist  
+University of Chicago — MSCAPP
+
 </div>
 
-<div class="grid">
+<div class="bio">
 
-<div class="card col-12">
-
-<h3>CivicPulse (Chicago)</h3>
-
-<p class="meta">
-
-CivicPulse is a civic data dashboard analyzing Chicago 311 service requests,
-demographic data, and public spending to identify mismatches between
-civic demand and resource allocation across neighborhoods.
-
-</p>
-
-<div class="tagrow">
-
-<span class="tag teal">Python</span>
-<span class="tag lilac">Dash / Plotly</span>
-<span class="tag sun">311 Data</span>
-<span class="tag rose">Public Policy</span>
+I work at the intersection of data science, impact evaluation,
+and public policy. My research focuses on using administrative
+data and computational tools to improve how public programs
+deliver services.
 
 </div>
 
-<p class="meta" style="margin-top:10px;">
+<div class="social">
 
-<a href="https://github.com/marcygcl/project-civicpulse">
-View repository</a>
-
-</p>
-
-</div>
+<a href="https://github.com/marcygcl">GitHub</a>
+<a href="https://www.linkedin.com/in/marcygcl/">LinkedIn</a>
+<a href="mailto:mgcstrolivano@uchicago.edu">Email</a>
 
 </div>
 
-</section>
+<div class="buttons">
+
+<a class="button primary" href="/projects">Projects</a>
+
+<a class="button" href="/research">Research</a>
+
+<a class="button" href="/cv.pdf">CV</a>
+
+</div>
+
+<footer>
+
+© 2026 Marcy Castro Livano
+
+</footer>
+
+</div>
+
+<script>
+
+function toggleTheme(){
+
+const html = document.documentElement
+
+if(html.dataset.theme === "dark"){
+
+html.dataset.theme = "light"
+
+localStorage.setItem("theme","light")
+
+}else{
+
+html.dataset.theme = "dark"
+
+localStorage.setItem("theme","dark")
+
+}
+
+}
+
+if(localStorage.getItem("theme")){
+
+document.documentElement.dataset.theme = localStorage.getItem("theme")
+
+}
+
+</script>
+
+</body>
+
+</html>
