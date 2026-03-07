@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Marcy Castro Lívano</title>
+<link rel="icon" type="image/jpeg" href="profile.jpg">
+
 <script>
   (function(){
     var t = localStorage.getItem('mcl-theme');
@@ -11,12 +13,12 @@
     else if(window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.dataset.theme = 'dark';
   })();
 </script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
-<style>
 
-/* ── LIGHT TOKENS ── */
+<style>
 :root {
   --bg:       #f9f6f0;
   --bg2:      #f2ede3;
@@ -38,7 +40,6 @@
   --nav-h:    64px;
 }
 
-/* ── DARK TOKENS ── */
 [data-theme="dark"] {
   --bg:       #1a1814;
   --bg2:      #211f1a;
@@ -55,9 +56,9 @@
   --nav-bg:   rgba(26,24,20,0.95);
 }
 
-/* ── RESET ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
+
 body {
   background: var(--bg);
   color: var(--ink);
@@ -70,10 +71,10 @@ body {
   height: 100vh;
   overflow: hidden;
 }
+
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 
-/* ── WATERCOLOUR BG ── */
 body::before {
   content: '';
   position: fixed; inset: 0; z-index: -1; pointer-events: none;
@@ -85,6 +86,7 @@ body::before {
   background-color: var(--bg);
   transition: background-color .3s;
 }
+
 [data-theme="dark"] body::before {
   background:
     radial-gradient(ellipse 70% 55% at 10% 15%, #2a4a5a22 0%, transparent 60%),
@@ -94,7 +96,6 @@ body::before {
   background-color: var(--bg);
 }
 
-/* ── NAV ── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   height: var(--nav-h);
@@ -105,19 +106,56 @@ nav {
   border-bottom: 1px solid var(--border);
   transition: background .3s, border-color .3s;
 }
+
 .nav-logo {
-  font-family: var(--serif); font-size: 1.05rem; font-weight: 500; letter-spacing: .02em;
-  cursor: pointer; background: none; border: none; color: var(--ink); padding: 0;
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: .02em;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--ink);
+  padding: 0;
 }
+
+.nav-logo-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.nav-logo-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .nav-links { display: flex; gap: 2rem; align-items: center; }
+
 .nav-links a {
   font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
   color: var(--ink2); position: relative; transition: color .25s; cursor: pointer;
 }
+
 .nav-links a::after {
-  content: ''; position: absolute; bottom: -3px; left: 0;
-  width: 0; height: 1px; background: var(--water); transition: width .3s;
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--water);
+  transition: width .3s;
 }
+
 .nav-links a:hover { color: var(--water); }
 .nav-links a:hover::after { width: 100%; }
 .nav-links a.active { color: var(--water); }
@@ -126,42 +164,78 @@ nav {
 .nav-controls { display: flex; align-items: center; gap: .5rem; }
 
 #lang-btn {
-  font-family: var(--sans); font-size: .7rem; font-weight: 400;
-  letter-spacing: .12em; text-transform: uppercase;
-  background: none; border: 1px solid var(--dust); color: var(--fog);
-  padding: .28rem .85rem; border-radius: 20px; cursor: pointer;
+  font-family: var(--sans);
+  font-size: .7rem;
+  font-weight: 400;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  background: none;
+  border: 1px solid var(--dust);
+  color: var(--fog);
+  padding: .28rem .85rem;
+  border-radius: 20px;
+  cursor: pointer;
   transition: border-color .3s, color .3s;
 }
+
 #lang-btn:hover { border-color: var(--water); color: var(--water); }
 
 #theme-btn {
-  background: none; border: 1px solid var(--dust); color: var(--fog);
-  width: 34px; height: 34px; border-radius: 50%; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: border-color .3s, color .3s; padding: 0;
+  background: none;
+  border: 1px solid var(--dust);
+  color: var(--fog);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color .3s, color .3s;
+  padding: 0;
 }
+
 #theme-btn:hover { border-color: var(--water); color: var(--water); }
+
 #theme-btn svg {
-  width: 14px; height: 14px; stroke: currentColor; fill: none;
-  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
   pointer-events: none;
 }
+
 .icon-sun  { display: none; }
 .icon-moon { display: block; }
 [data-theme="dark"] .icon-sun  { display: block; }
 [data-theme="dark"] .icon-moon { display: none; }
 
 .hamburger {
-  display: none; flex-direction: column; gap: 5px;
-  cursor: pointer; background: none; border: none; padding: 4px;
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
 }
-.hamburger span { display: block; width: 22px; height: 1.5px; background: var(--ink2); transition: all .3s; }
 
-/* ── PAGE SYSTEM ── */
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--ink2);
+  transition: all .3s;
+}
+
 #pages-container {
   position: fixed;
   top: var(--nav-h);
-  left: 0; right: 0;
+  left: 0;
+  right: 0;
   bottom: 0;
   overflow: hidden;
 }
@@ -171,222 +245,465 @@ nav {
   height: calc(100vh - var(--nav-h));
   overflow-y: auto;
   animation: pageFadeIn .45s ease forwards;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
-.page.active {
-  display: block;
-}
+
+.page.active { display: block; }
 
 @keyframes pageFadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── LAYOUT ── */
-.wrap { max-width: var(--max); margin: 0 auto; padding: 0 2.5rem; }
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
 .section-label {
-  font-family: var(--mono); font-size: .68rem; letter-spacing: .22em;
-  text-transform: uppercase; color: var(--water); margin-bottom: .8rem;
+  font-family: var(--mono);
+  font-size: .68rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--water);
+  margin-bottom: .8rem;
 }
-.section-title {
-  font-family: var(--serif); font-size: clamp(1.9rem, 3.5vw, 2.6rem);
-  font-weight: 400; line-height: 1.15; margin-bottom: 1rem;
-}
+
 .divider {
-  width: 40px; height: 1px;
+  width: 40px;
+  height: 1px;
   background: linear-gradient(90deg, var(--water), var(--lily));
   margin-bottom: 2.5rem;
 }
 
-/* ── HOME PAGE ── */
+/* HOME */
 #page-home {
-  align-items: center;
-  height: calc(100vh - var(--nav-h));
-  overflow: hidden;
+  min-height: calc(100vh - var(--nav-h));
 }
+
 #page-home.active {
-  display: flex;
+  display: block;
 }
+
+.hero-home-shell {
+  min-height: calc(100vh - var(--nav-h));
+  display: flex;
+  align-items: center;
+}
+
 .hero-inner {
-  max-width: var(--max); margin: 0 auto; padding: 4rem 2.5rem;
-  display: grid; grid-template-columns: 1fr 300px; gap: 4rem; align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 4rem 2.5rem;
+  display: grid;
+  grid-template-columns: 1.2fr 300px;
+  gap: 5rem;
+  align-items: center;
   width: 100%;
 }
+
 .hero-eyebrow {
-  font-family: var(--mono); font-size: .68rem; letter-spacing: .22em;
-  text-transform: uppercase; color: var(--water); margin-bottom: 1.4rem;
-  opacity: 0; animation: fadeUp .8s .1s forwards;
+  font-family: var(--mono);
+  font-size: .68rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--water);
+  margin-bottom: 1.4rem;
+  opacity: 0;
+  animation: fadeUp .8s .1s forwards;
 }
+
 .hero-name {
-  font-family: var(--serif); font-size: clamp(3rem, 6vw, 5.2rem);
-  font-weight: 400; line-height: 1.0; opacity: 0; animation: fadeUp .9s .25s forwards;
+  font-family: var(--serif);
+  font-size: clamp(3rem, 6vw, 5.2rem);
+  font-weight: 400;
+  line-height: 1.0;
+  opacity: 0;
+  animation: fadeUp .9s .25s forwards;
 }
+
 .hero-name em { font-style: italic; color: var(--poppy); }
+
 .hero-tagline {
-  font-family: var(--serif); font-size: clamp(1rem, 1.8vw, 1.2rem);
-  font-weight: 300; font-style: italic; color: var(--ink2);
-  margin: 1.2rem 0 1.6rem; line-height: 1.6;
-  opacity: 0; animation: fadeUp .9s .4s forwards;
+  font-family: var(--serif);
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--ink2);
+  margin: 1.2rem 0 1.6rem;
+  line-height: 1.6;
+  opacity: 0;
+  animation: fadeUp .9s .4s forwards;
 }
+
 .hero-bio {
-  font-size: .9rem; color: var(--ink2); max-width: 480px; line-height: 1.85;
-  opacity: 0; animation: fadeUp .9s .55s forwards;
+  font-size: .9rem;
+  color: var(--ink2);
+  max-width: 480px;
+  line-height: 1.85;
+  opacity: 0;
+  animation: fadeUp .9s .55s forwards;
 }
+
 .hero-links {
-  display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;
-  opacity: 0; animation: fadeUp .9s .7s forwards;
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp .9s .7s forwards;
 }
+
 .btn {
-  font-size: .72rem; font-weight: 400; letter-spacing: .1em; text-transform: uppercase;
-  padding: .65rem 1.6rem; border-radius: 2px; transition: all .3s;
-  display: inline-flex; align-items: center; gap: .5rem;
-  cursor: pointer; border: 1px solid transparent;
+  font-size: .72rem;
+  font-weight: 400;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: .65rem 1.6rem;
+  border-radius: 2px;
+  transition: all .3s;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  cursor: pointer;
+  border: 1px solid transparent;
 }
+
 .btn-primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 .btn-primary:hover { background: var(--water); border-color: var(--water); }
 .btn-outline { background: transparent; color: var(--ink2); border-color: var(--dust); }
 .btn-outline:hover { border-color: var(--ink2); color: var(--ink); }
-.hero-visual {
-  width: 300px; height: 300px;
-  opacity: 0; animation: fadeIn 1.2s .6s forwards;
-  align-self: center;
-}
-.hero-visual svg { width: 100%; height: 100%; }
 
-/* ── ABOUT PAGE ── */
-#page-about { padding: 4rem 0 5rem; }
+.hero-visual {
+  width: 300px;
+  height: 300px;
+  opacity: 0;
+  animation: fadeIn 1.2s .6s forwards;
+  align-self: center;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 18px 50px rgba(0,0,0,.10);
+  background: var(--bg2);
+}
+
+.hero-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* OTHER PAGES */
+#page-about,
+#page-projects,
+#page-experience,
+#page-skills,
+#page-contact {
+  padding: 4rem 0 5rem;
+}
+
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
 .about-text p { margin-bottom: 1.2rem; color: var(--ink2); font-size: .93rem; }
 .about-facts { display: flex; flex-direction: column; gap: 1.8rem; }
+
 .fact-card { border-left: 2px solid var(--border); padding-left: 1.2rem; transition: border-color .3s; }
 .fact-card:hover { border-color: var(--water); }
 .fact-card .label { font-family: var(--mono); font-size: .63rem; letter-spacing: .18em; text-transform: uppercase; color: var(--dust); margin-bottom: .3rem; }
 .fact-card .value { font-family: var(--serif); font-size: 1rem; font-weight: 500; color: var(--ink); line-height: 1.3; }
 .fact-card .sub { font-size: .8rem; color: var(--fog); margin-top: .15rem; }
 
-/* ── PROJECTS PAGE ── */
-#page-projects { padding: 4rem 0 5rem; }
 .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+
 .project-card {
-  border: 1px solid var(--border); border-radius: 4px; padding: 1.7rem;
-  background: var(--bg2); transition: all .35s; position: relative; overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.7rem;
+  background: var(--bg2);
+  transition: all .35s;
+  position: relative;
+  overflow: hidden;
 }
+
 .project-card::before {
-  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 3px;
   background: linear-gradient(90deg, var(--water), var(--lily));
-  transform: scaleX(0); transform-origin: left; transition: transform .4s;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .4s;
 }
-.project-card:hover { border-color: transparent; transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,.08); }
+
+.project-card:hover {
+  border-color: transparent;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,.08);
+}
+
 .project-card:hover::before { transform: scaleX(1); }
-.project-card.featured { grid-column: 1/-1; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-.project-card.featured::before { background: linear-gradient(90deg, var(--water), var(--willow)); }
-.project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: .9rem; }
+
+.project-card.featured {
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+}
+
+.project-card.featured::before {
+  background: linear-gradient(90deg, var(--water), var(--willow));
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: .9rem;
+}
+
 .project-number { font-family: var(--mono); font-size: .63rem; color: var(--dust); letter-spacing: .1em; }
 .project-links { display: flex; gap: .5rem; flex-wrap: wrap; }
-.project-link-icon {
-  font-size: .7rem; color: var(--fog); border: 1px solid var(--border);
-  padding: .2rem .55rem; border-radius: 3px; transition: all .25s; font-family: var(--mono);
-}
-.project-link-icon:hover { color: var(--water); border-color: var(--water); }
-.project-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 500; color: var(--ink); margin-bottom: .45rem; line-height: 1.25; }
-.project-question { font-family: var(--serif); font-size: .93rem; font-style: italic; color: var(--ink2); margin-bottom: .85rem; line-height: 1.55; }
-.project-desc { font-size: .84rem; color: var(--fog); line-height: 1.8; margin-bottom: 1rem; }
-.project-methods { display: flex; flex-wrap: wrap; gap: .4rem; }
-.method-tag { font-family: var(--mono); font-size: .62rem; padding: .2rem .65rem; border-radius: 3px; background: var(--border); color: var(--ink2); }
-.project-status {
-  display: inline-block; font-family: var(--mono); font-size: .6rem; letter-spacing: .12em;
-  text-transform: uppercase; padding: .18rem .65rem; border-radius: 20px;
-  border: 1px solid var(--willow); color: var(--willow); margin-bottom: .9rem;
-}
-.mini-chart { background: var(--border); border-radius: 4px; padding: 1.2rem; margin-bottom: 1.4rem; }
 
-/* ── EXPERIENCE PAGE ── */
-#page-experience { padding: 4rem 0 5rem; }
-.timeline { display: flex; flex-direction: column; }
-.tl-item { display: grid; grid-template-columns: 150px 1px 1fr; gap: 0 2rem; padding-bottom: 2.5rem; }
-.tl-item:last-child { padding-bottom: 0; }
-.tl-date { font-family: var(--mono); font-size: .68rem; color: var(--fog); padding-top: .15rem; text-align: right; line-height: 1.5; }
-.tl-line { position: relative; background: var(--border); }
-.tl-line::before {
-  content: ''; position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
-  width: 8px; height: 8px; border-radius: 50%; background: var(--bg); border: 1.5px solid var(--water);
+.project-link-icon {
+  font-size: .7rem;
+  color: var(--fog);
+  border: 1px solid var(--border);
+  padding: .2rem .55rem;
+  border-radius: 3px;
+  transition: all .25s;
+  font-family: var(--mono);
 }
-.tl-role { font-family: var(--serif); font-size: 1.1rem; font-weight: 500; color: var(--ink); margin-bottom: .2rem; }
+
+.project-link-icon:hover { color: var(--water); border-color: var(--water); }
+
+.project-title {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: .45rem;
+  line-height: 1.25;
+}
+
+.project-question {
+  font-family: var(--serif);
+  font-size: .93rem;
+  font-style: italic;
+  color: var(--ink2);
+  margin-bottom: .85rem;
+  line-height: 1.55;
+}
+
+.project-desc {
+  font-size: .84rem;
+  color: var(--fog);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.project-methods { display: flex; flex-wrap: wrap; gap: .4rem; }
+
+.method-tag {
+  font-family: var(--mono);
+  font-size: .62rem;
+  padding: .2rem .65rem;
+  border-radius: 3px;
+  background: var(--border);
+  color: var(--ink2);
+}
+
+.project-status {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: .6rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: .18rem .65rem;
+  border-radius: 20px;
+  border: 1px solid var(--willow);
+  color: var(--willow);
+  margin-bottom: .9rem;
+}
+
+.mini-chart {
+  background: var(--border);
+  border-radius: 4px;
+  padding: 1.2rem;
+  margin-bottom: 1.4rem;
+}
+
+.timeline { display: flex; flex-direction: column; }
+
+.tl-item {
+  display: grid;
+  grid-template-columns: 150px 1px 1fr;
+  gap: 0 2rem;
+  padding-bottom: 2.5rem;
+}
+
+.tl-item:last-child { padding-bottom: 0; }
+
+.tl-date {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--fog);
+  padding-top: .15rem;
+  text-align: right;
+  line-height: 1.5;
+}
+
+.tl-line { position: relative; background: var(--border); }
+
+.tl-line::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1.5px solid var(--water);
+}
+
+.tl-role {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: .2rem;
+}
+
 .tl-org { font-size: .8rem; color: var(--water); margin-bottom: .55rem; }
 .tl-desc { font-size: .86rem; color: var(--ink2); line-height: 1.75; }
 
-/* ── SKILLS PAGE ── */
-#page-skills { padding: 4rem 0 5rem; }
 .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.3rem; }
+
 .skill-group {
-  background: var(--bg2); border: 1px solid var(--border); border-radius: 4px;
-  padding: 1.4rem; transition: border-color .3s, transform .3s;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.4rem;
+  transition: border-color .3s, transform .3s;
 }
+
 .skill-group:hover { border-color: var(--water); transform: translateY(-2px); }
-.skill-group h4 { font-family: var(--mono); font-size: .63rem; letter-spacing: .18em; text-transform: uppercase; color: var(--water); margin-bottom: .85rem; }
+
+.skill-group h4 {
+  font-family: var(--mono);
+  font-size: .63rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--water);
+  margin-bottom: .85rem;
+}
+
 .skill-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
-.tag { font-size: .75rem; padding: .25rem .75rem; border-radius: 20px; background: var(--bg); border: 1px solid var(--border); color: var(--ink2); transition: all .25s; }
+
+.tag {
+  font-size: .75rem;
+  padding: .25rem .75rem;
+  border-radius: 20px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--ink2);
+  transition: all .25s;
+}
+
 .tag:hover { background: var(--water); border-color: var(--water); color: #fff; }
 
-/* ── CONTACT PAGE ── */
-#page-contact { padding: 4rem 0 5rem; }
 .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
 .contact-text p { font-size: .92rem; color: var(--ink2); line-height: 1.85; margin-bottom: 1rem; }
 .contact-links { display: flex; flex-direction: column; gap: .8rem; }
-.contact-link { display: flex; align-items: center; gap: 1rem; font-size: .85rem; color: var(--ink2); transition: color .25s; }
-.contact-link:hover { color: var(--water); }
-.contact-link .icon { font-family: var(--mono); font-size: .68rem; width: 28px; color: var(--dust); }
 
-/* ── FOOTER ── */
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: .85rem;
+  color: var(--ink2);
+  transition: color .25s;
+}
+
+.contact-link:hover { color: var(--water); }
+
+.contact-link .icon {
+  font-family: var(--mono);
+  font-size: .68rem;
+  width: 28px;
+  color: var(--dust);
+}
+
 footer {
   border-top: 1px solid var(--border);
   padding: 1.5rem 2.5rem;
-  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
   margin-top: 3rem;
 }
+
 .footer-name { font-family: var(--serif); font-size: .9rem; color: var(--fog); }
 .footer-copy { font-family: var(--mono); font-size: .63rem; letter-spacing: .1em; color: var(--dust); }
 
-/* ── MOBILE DRAWER ── */
 .nav-drawer {
-  position: fixed; inset: 0; z-index: 190;
-  background: rgba(249,246,240,.97); backdrop-filter: blur(16px);
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem;
-  transform: translateX(100%); transition: transform .4s cubic-bezier(.4,0,.2,1);
+  position: fixed;
+  inset: 0;
+  z-index: 190;
+  background: rgba(249,246,240,.97);
+  backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  transform: translateX(100%);
+  transition: transform .4s cubic-bezier(.4,0,.2,1);
 }
+
 [data-theme="dark"] .nav-drawer { background: rgba(26,24,20,.97); }
 .nav-drawer.open { transform: translateX(0); }
+
 .nav-drawer a {
-  font-family: var(--serif); font-size: 2rem; color: var(--ink);
-  transition: color .25s; cursor: pointer;
+  font-family: var(--serif);
+  font-size: 2rem;
+  color: var(--ink);
+  transition: color .25s;
+  cursor: pointer;
 }
+
 .nav-drawer a:hover { color: var(--water); }
 .nav-drawer a.active { color: var(--water); }
 
-/* ── ANIMATIONS ── */
-@keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
-@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity .55s, transform .55s; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-
-/* ── RESPONSIVE ── */
-@media (max-width: 820px) {
-  body { overflow: hidden; }
-  .nav-links { display: none; }
-  .hamburger { display: flex; }
-  .hero-inner { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem; }
-  .hero-visual { width: 180px; height: 180px; margin: 0 auto; }
-  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  .projects-grid { grid-template-columns: 1fr; }
-  .project-card.featured { grid-template-columns: 1fr; }
-  .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-  .tl-item { grid-template-columns: 1px 1fr; gap: 0 1.2rem; }
-  .tl-date { display: none; }
-  #page-about, #page-projects, #page-experience, #page-skills, #page-contact {
-    padding: 3rem 0 4rem;
-  }
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(16px); }
+  to { opacity:1; transform:translateY(0); }
 }
 
-/* ── PAGE BANNERS ── */
+@keyframes fadeIn {
+  from { opacity:0; }
+  to { opacity:1; }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .55s, transform .55s;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .page-banner {
   width: 100%;
   height: 220px;
@@ -394,25 +711,22 @@ footer {
   overflow: hidden;
   margin-bottom: 3rem;
 }
+
 .page-banner img {
-  width: 100%; height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center;
   display: block;
-  filter: sepia(18%) brightness(0.88) contrast(1.05);
+  filter: none;
 }
-.page-banner::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent 30%,
-    var(--bg) 100%
-  );
-}
+
+.page-banner::after { display: none; }
+
 .page-banner-title {
   position: absolute;
-  bottom: 1.8rem; left: 2.5rem;
+  bottom: 1.8rem;
+  left: 2.5rem;
   z-index: 2;
   font-family: var(--serif);
   font-size: clamp(1.8rem, 3vw, 2.4rem);
@@ -422,13 +736,70 @@ footer {
   text-shadow: 0 2px 20px rgba(0,0,0,0.35);
   letter-spacing: .01em;
 }
+
+@media (max-width: 820px) {
+  body { overflow: hidden; }
+  nav { padding: 0 1.2rem; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+
+  .hero-home-shell {
+    min-height: auto;
+    display: block;
+  }
+
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 3rem 1.5rem 4rem;
+    text-align: left;
+    min-height: calc(100vh - var(--nav-h));
+    align-items: center;
+  }
+
+  .hero-visual {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto;
+    order: -1;
+  }
+
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .project-card.featured { grid-template-columns: 1fr; }
+  .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .tl-item { grid-template-columns: 1px 1fr; gap: 0 1.2rem; }
+  .tl-date { display: none; }
+
+  #page-about,
+  #page-projects,
+  #page-experience,
+  #page-skills,
+  #page-contact {
+    padding: 3rem 0 4rem;
+  }
+
+  .page-banner {
+    height: 180px;
+    margin-bottom: 2rem;
+  }
+
+  .page-banner-title {
+    left: 1.4rem;
+    bottom: 1.2rem;
+  }
+
+  .wrap { padding: 0 1.5rem; }
+}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav id="nav">
-  <button class="nav-logo" onclick="showPage('home')">MCL</button>
+  <button class="nav-logo nav-logo-image" onclick="showPage('home')">
+    <img src="profile.jpg" alt="Marcy Castro Lívano">
+  </button>
+
   <ul class="nav-links">
     <li><a href="#" onclick="showPage('about');return false;" data-page="about" data-en="About" data-es="Sobre mí">About</a></li>
     <li><a href="#" onclick="showPage('projects');return false;" data-page="projects" data-en="Projects" data-es="Proyectos">Projects</a></li>
@@ -437,11 +808,12 @@ footer {
     <li><a href="#" onclick="showPage('contact');return false;" data-page="contact" data-en="Contact" data-es="Contacto">Contact</a></li>
     <li><a href="#" data-en="CV ↓" data-es="CV ↓">CV ↓</a></li>
   </ul>
+
   <div class="nav-controls">
     <button id="lang-btn" title="Switch language" onclick="toggleLang()">ES</button>
     <button id="theme-btn" title="Toggle theme" onclick="toggleTheme()">
       <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      <svg class="icon-sun"  viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
     </button>
     <button class="hamburger" id="hamburger" aria-label="Menu" onclick="document.getElementById('drawer').classList.toggle('open')">
       <span></span><span></span><span></span>
@@ -449,7 +821,6 @@ footer {
   </div>
 </nav>
 
-<!-- MOBILE DRAWER -->
 <div class="nav-drawer" id="drawer">
   <a href="#" onclick="showPage('about');closeDrawer();return false;" data-page="about" data-en="About" data-es="Sobre mí">About</a>
   <a href="#" onclick="showPage('projects');closeDrawer();return false;" data-page="projects" data-en="Projects" data-es="Proyectos">Projects</a>
@@ -458,53 +829,45 @@ footer {
   <a href="#" onclick="showPage('contact');closeDrawer();return false;" data-page="contact" data-en="Contact" data-es="Contacto">Contact</a>
 </div>
 
-<!-- PAGES CONTAINER -->
 <div id="pages-container">
 
-  <!-- ── HOME ── -->
   <div id="page-home" class="page active">
-    <div class="hero-inner">
-      <div class="hero-text">
-        <p class="hero-eyebrow"
-           data-en="Economist · Computational Policy Researcher · Civic Data Scientist"
-           data-es="Economista · Investigadora de Políticas Computacionales · Científica de Datos Cívicos">Economist · Computational Policy Researcher · Civic Data Scientist</p>
-        <h1 class="hero-name">Marcy<br><em>Castro Lívano</em></h1>
-        <p class="hero-tagline"
-           data-en="Data can reveal the invisible structures of social problems.<br>I build the tools to find them."
-           data-es="Los datos pueden revelar las estructuras invisibles de los problemas sociales.<br>Yo construyo las herramientas para encontrarlas.">
-          Data can reveal the invisible structures of social problems.<br>I build the tools to find them.
-        </p>
-        <p class="hero-bio"
-           data-en="I am a Peruvian economist and MSc student at the University of Chicago Harris School, working at the intersection of data science, public policy, and civic technology. I have designed field evaluations in Sierra Leone, automated institutional pipelines in Lima, and analyzed civic data in Chicago — always with the same question: how do we make systems work better for the people they are supposed to serve?"
-           data-es="Soy economista peruana y estudiante de MSc en la Harris School de la Universidad de Chicago, trabajando en la intersección de la ciencia de datos, las políticas públicas y la tecnología cívica. He diseñado evaluaciones de campo en Sierra Leona, automatizado pipelines institucionales en Lima y analizado datos cívicos en Chicago — siempre con la misma pregunta: ¿cómo hacemos que los sistemas funcionen mejor para las personas que se supone deben servir?">
-          I am a Peruvian economist and MSc student at the University of Chicago Harris School, working at the intersection of data science, public policy, and civic technology. I have designed field evaluations in Sierra Leone, automated institutional pipelines in Lima, and analyzed civic data in Chicago — always with the same question: how do we make systems work better for the people they are supposed to serve?
-        </p>
-        <div class="hero-links">
-          <a href="#" onclick="showPage('projects');return false;" class="btn btn-primary" data-en="View Work" data-es="Ver Trabajo">View Work</a>
-          <a href="#" onclick="showPage('contact');return false;" class="btn btn-outline" data-en="Get in Touch" data-es="Contactar">Get in Touch</a>
+    <div class="hero-home-shell">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <p class="hero-eyebrow"
+             data-en="Economist · Computational Policy Researcher · Civic Data Scientist"
+             data-es="Economista · Investigadora de Políticas Computacionales · Científica de Datos Cívicos">
+            Economist · Computational Policy Researcher · Civic Data Scientist
+          </p>
+
+          <h1 class="hero-name">Marcy<br><em>Castro Lívano</em></h1>
+
+          <p class="hero-tagline"
+             data-en="Data can reveal the invisible structures of social problems.<br>I build the tools to find them."
+             data-es="Los datos pueden revelar las estructuras invisibles de los problemas sociales.<br>Yo construyo las herramientas para encontrarlas.">
+            Data can reveal the invisible structures of social problems.<br>I build the tools to find them.
+          </p>
+
+          <p class="hero-bio"
+             data-en="I am a Peruvian economist and MSc student at the University of Chicago Harris School, working at the intersection of data science, public policy, and civic technology. I have designed field evaluations in Sierra Leone, automated institutional pipelines in Lima, and analyzed civic data in Chicago — always with the same question: how do we make systems work better for the people they are supposed to serve?"
+             data-es="Soy economista peruana y estudiante de MSc en la Harris School de la Universidad de Chicago, trabajando en la intersección de la ciencia de datos, las políticas públicas y la tecnología cívica. He diseñado evaluaciones de campo en Sierra Leona, automatizado pipelines institucionales en Lima y analizado datos cívicos en Chicago — siempre con la misma pregunta: ¿cómo hacemos que los sistemas funcionen mejor para las personas que se supone deben servir?">
+            I am a Peruvian economist and MSc student at the University of Chicago Harris School, working at the intersection of data science, public policy, and civic technology. I have designed field evaluations in Sierra Leone, automated institutional pipelines in Lima, and analyzed civic data in Chicago — always with the same question: how do we make systems work better for the people they are supposed to serve?
+          </p>
+
+          <div class="hero-links">
+            <a href="#" onclick="showPage('projects');return false;" class="btn btn-primary" data-en="View Work" data-es="Ver Trabajo">View Work</a>
+            <a href="#" onclick="showPage('contact');return false;" class="btn btn-outline" data-en="Get in Touch" data-es="Contactar">Get in Touch</a>
+          </div>
         </div>
-      </div>
-      <div class="hero-visual">
-        <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <filter id="wb1"><feGaussianBlur stdDeviation="16"/></filter>
-            <filter id="wb2"><feGaussianBlur stdDeviation="11"/></filter>
-            <filter id="wb3"><feGaussianBlur stdDeviation="8"/></filter>
-          </defs>
-          <ellipse cx="135" cy="165" rx="105" ry="82" fill="#7ca8bc" opacity=".16" filter="url(#wb1)"/>
-          <ellipse cx="175" cy="120" rx="75"  ry="58" fill="#b09fc0" opacity=".20" filter="url(#wb2)"/>
-          <ellipse cx="95"  cy="135" rx="68"  ry="52" fill="#8fa88a" opacity=".18" filter="url(#wb2)"/>
-          <ellipse cx="165" cy="185" rx="58"  ry="46" fill="#c9a96e" opacity=".14" filter="url(#wb3)"/>
-          <ellipse cx="115" cy="95"  rx="42"  ry="34" fill="#c07868" opacity=".13" filter="url(#wb3)"/>
-          <circle cx="150" cy="150" r="122" stroke="#c5bab0" stroke-width=".7" opacity=".35"/>
-          <circle cx="150" cy="150" r="90"  stroke="#c5bab0" stroke-width=".5" opacity=".2"/>
-          <text x="150" y="160" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="38" font-weight="300" fill="#28261f" opacity=".5" letter-spacing="5">MCL</text>
-        </svg>
+
+        <div class="hero-visual">
+          <img src="profile.jpg" alt="Portrait of Marcy Castro Lívano">
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- ── ABOUT ── -->
   <div id="page-about" class="page">
     <div class="page-banner">
       <img src="banner_about.jpg" alt="">
@@ -528,6 +891,7 @@ footer {
             That's what brought me to the MSc in Computational Analysis and Public Policy at UChicago — not a career pivot, but a deepening. I wanted the technical fluency to work on the full problem. Today I work at the intersection of data science, public policy, and civic technology, with a particular interest in governance, service delivery, and institutional accountability.
           </p>
         </div>
+
         <div class="about-facts reveal">
           <div class="fact-card">
             <div class="label" data-en="Currently" data-es="Actualmente">Currently</div>
@@ -561,7 +925,6 @@ footer {
     </footer>
   </div>
 
-  <!-- ── PROJECTS ── -->
   <div id="page-projects" class="page">
     <div class="page-banner">
       <img src="banner_projects.jpg" alt="">
@@ -571,7 +934,6 @@ footer {
       <p class="section-label" data-en="Selected Work" data-es="Trabajo Seleccionado">Selected Work</p>
       <div class="divider"></div>
       <div class="projects-grid">
-
         <div class="project-card featured reveal">
           <div>
             <div class="project-header">
@@ -579,71 +941,33 @@ footer {
               <span class="project-status" data-en="Active · 2025–26" data-es="En curso · 2025–26">Active · 2025–26</span>
             </div>
             <h3 class="project-title">CivicPulse Chicago</h3>
-            <p class="project-question" data-en="When residents file 311 complaints about broken lights, potholes, or failing infrastructure — does the city listen equally? And does the budget reflect what people actually need?" data-es="Cuando los residentes presentan quejas 311 sobre semáforos rotos, baches o infraestructura fallida — ¿escucha la ciudad por igual? ¿Y refleja el presupuesto lo que la gente realmente necesita?">When residents file 311 complaints about broken lights, potholes, or failing infrastructure — does the city listen equally? And does the budget reflect what people actually need?</p>
-            <p class="project-desc" data-en="CivicPulse integrates Chicago's 311 service requests, census demographics, and public budget allocations to map where institutional responsiveness breaks down. The analysis surfaces complaint density, per-capita service gaps, and budget mismatches across the city's 77 community areas. The goal is a spatial civic sentiment score — a diagnostic tool for understanding which neighbourhoods bear the weight of unmet public need, and whether public spending follows or ignores that signal." data-es="CivicPulse integra las solicitudes 311 de Chicago, datos censales y asignaciones presupuestarias para mapear dónde falla la capacidad de respuesta institucional. El análisis revela densidad de quejas, brechas de servicio per cápita y desajustes presupuestales en las 77 áreas comunitarias. El objetivo es una puntuación espacial de sentimiento cívico — una herramienta diagnóstica para entender qué barrios cargan con necesidades públicas no atendidas, y si el gasto público sigue o ignora esa señal.">CivicPulse integrates Chicago's 311 service requests, census demographics, and public budget allocations to map where institutional responsiveness breaks down. The analysis surfaces complaint density, per-capita service gaps, and budget mismatches across the city's 77 community areas. The goal is a spatial civic sentiment score — a diagnostic tool for understanding which neighbourhoods bear the weight of unmet public need, and whether public spending follows or ignores that signal.</p>
+            <p class="project-question">When residents file 311 complaints about broken lights, potholes, or failing infrastructure — does the city listen equally? And does the budget reflect what people actually need?</p>
+            <p class="project-desc">CivicPulse integrates Chicago's 311 service requests, census demographics, and public budget allocations to map where institutional responsiveness breaks down. The analysis surfaces complaint density, per-capita service gaps, and budget mismatches across the city's 77 community areas.</p>
             <div class="project-methods">
               <span class="method-tag">Python</span><span class="method-tag">GeoPandas</span><span class="method-tag">Plotly</span><span class="method-tag">Census API</span><span class="method-tag">Spatial Analysis</span><span class="method-tag">Dashboard</span>
-            </div>
-            <div class="project-links" style="margin-top:1.1rem;">
-              <a href="#" class="project-link-icon">GitHub</a>
-              <a href="#" class="project-link-icon" data-en="Dashboard" data-es="Dashboard">Dashboard</a>
             </div>
           </div>
           <div>
             <div class="mini-chart">
               <svg viewBox="0 0 260 165" width="100%" xmlns="http://www.w3.org/2000/svg">
                 <text x="8" y="13" font-family="DM Mono,monospace" font-size="6.5" fill="#9c948a" letter-spacing="1">COMPLAINTS PER CAPITA — CHICAGO AREAS</text>
-                <rect x="10"  y="62"  width="16" height="73" rx="1" fill="#7ca8bc" opacity=".65"/>
-                <rect x="30"  y="48"  width="16" height="87" rx="1" fill="#7ca8bc" opacity=".75"/>
-                <rect x="50"  y="77"  width="16" height="58" rx="1" fill="#7ca8bc" opacity=".6"/>
-                <rect x="70"  y="28"  width="16" height="107" rx="1" fill="#c07868" opacity=".85"/>
-                <rect x="90"  y="55"  width="16" height="80" rx="1" fill="#7ca8bc" opacity=".68"/>
-                <rect x="110" y="82"  width="16" height="53" rx="1" fill="#7ca8bc" opacity=".6"/>
-                <rect x="130" y="18"  width="16" height="117" rx="1" fill="#c07868" opacity=".9"/>
-                <rect x="150" y="65"  width="16" height="70" rx="1" fill="#7ca8bc" opacity=".68"/>
-                <rect x="170" y="50"  width="16" height="85" rx="1" fill="#8fa88a" opacity=".72"/>
-                <rect x="190" y="42"  width="16" height="93" rx="1" fill="#7ca8bc" opacity=".7"/>
-                <rect x="210" y="70"  width="16" height="65" rx="1" fill="#8fa88a" opacity=".68"/>
-                <rect x="230" y="55"  width="16" height="80" rx="1" fill="#7ca8bc" opacity=".65"/>
+                <rect x="10" y="62" width="16" height="73" rx="1" fill="#7ca8bc" opacity=".65"/>
+                <rect x="30" y="48" width="16" height="87" rx="1" fill="#7ca8bc" opacity=".75"/>
+                <rect x="50" y="77" width="16" height="58" rx="1" fill="#7ca8bc" opacity=".6"/>
+                <rect x="70" y="28" width="16" height="107" rx="1" fill="#c07868" opacity=".85"/>
+                <rect x="90" y="55" width="16" height="80" rx="1" fill="#7ca8bc" opacity=".68"/>
+                <rect x="110" y="82" width="16" height="53" rx="1" fill="#7ca8bc" opacity=".6"/>
+                <rect x="130" y="18" width="16" height="117" rx="1" fill="#c07868" opacity=".9"/>
+                <rect x="150" y="65" width="16" height="70" rx="1" fill="#7ca8bc" opacity=".68"/>
+                <rect x="170" y="50" width="16" height="85" rx="1" fill="#8fa88a" opacity=".72"/>
+                <rect x="190" y="42" width="16" height="93" rx="1" fill="#7ca8bc" opacity=".7"/>
+                <rect x="210" y="70" width="16" height="65" rx="1" fill="#8fa88a" opacity=".68"/>
+                <rect x="230" y="55" width="16" height="80" rx="1" fill="#7ca8bc" opacity=".65"/>
                 <line x1="6" y1="136" x2="254" y2="136" stroke="#c5bab0" stroke-width=".7"/>
-                <text x="70"  y="150" font-family="DM Mono,monospace" font-size="5.5" fill="#c07868">↑ service gap</text>
-                <text x="130" y="150" font-family="DM Mono,monospace" font-size="5.5" fill="#c07868">↑ max deficit</text>
               </svg>
-            </div>
-            <div style="font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dust);margin-bottom:.7rem;" data-en="Key Themes" data-es="Temas Clave">Key Themes</div>
-            <div style="display:flex;flex-direction:column;gap:.45rem;">
-              <div style="font-size:.83rem;color:var(--ink2);" data-en="→ Spatial inequality in service delivery" data-es="→ Desigualdad espacial en prestación de servicios">→ Spatial inequality in service delivery</div>
-              <div style="font-size:.83rem;color:var(--ink2);" data-en="→ Budget–complaint misalignment by neighbourhood" data-es="→ Desajuste presupuesto–quejas por barrio">→ Budget–complaint misalignment by neighbourhood</div>
-              <div style="font-size:.83rem;color:var(--ink2);" data-en="→ Demographic patterns in civic voice" data-es="→ Patrones demográficos en la voz cívica">→ Demographic patterns in civic voice</div>
-              <div style="font-size:.83rem;color:var(--ink2);" data-en="→ Composite civic responsiveness score" data-es="→ Puntuación compuesta de capacidad de respuesta">→ Composite civic responsiveness score</div>
             </div>
           </div>
         </div>
-
-        <div class="project-card reveal">
-          <div class="project-header"><span class="project-number">02</span><div class="project-links"><a href="#" class="project-link-icon">GitHub</a></div></div>
-          <h3 class="project-title" data-en="ETL Pipeline — National Pension Office" data-es="Pipeline ETL — Oficina Nacional de Pensiones">ETL Pipeline — National Pension Office</h3>
-          <p class="project-question" data-en="How do you turn 45,000 noisy legal-case records into an operational intelligence system for 200+ attorneys?" data-es="¿Cómo se transforman 45,000 expedientes legales ruidosos en un sistema de inteligencia operacional para 200+ abogados?">How do you turn 45,000 noisy legal-case records into an operational intelligence system for 200+ attorneys?</p>
-          <p class="project-desc" data-en="End-to-end automated ETL pipeline for Peru's National Pension Office transforming fragmented case data into a validated unified database. Real-time Power BI dashboards reduced reporting time by 40% and improved staffing forecasting for 200+ legal staff." data-es="Pipeline ETL automatizado de extremo a extremo para la ONP transformando datos fragmentados en una base de datos validada. Dashboards en Power BI redujeron el tiempo de reporte en 40% y mejoraron la previsión de personal para 200+ abogados.">End-to-end automated ETL pipeline for Peru's National Pension Office transforming fragmented case data into a validated unified database. Real-time Power BI dashboards reduced reporting time by 40% and improved staffing forecasting for 200+ legal staff.</p>
-          <div class="project-methods"><span class="method-tag">Python</span><span class="method-tag">Pandas</span><span class="method-tag">Power BI</span><span class="method-tag">Power Query</span><span class="method-tag">ETL</span></div>
-        </div>
-
-        <div class="project-card reveal">
-          <div class="project-header"><span class="project-number">03</span></div>
-          <h3 class="project-title" data-en="Field Data Systems — Sierra Leone RCT" data-es="Sistemas de Campo — EAA Sierra Leona">Field Data Systems — Sierra Leone RCT</h3>
-          <p class="project-question" data-en="I spent a year in Freetown working on an RCT across 450 communities. The research question was about vaccines and electrification. The real question was: how do you build rigorous infrastructure in fragile systems?" data-es="Pasé un año en Freetown trabajando en una EAA en 450 comunidades. La pregunta de investigación era sobre vacunas y electrificación. La pregunta real era: ¿cómo construyes infraestructura rigurosa en sistemas frágiles?">I spent a year in Freetown working on an RCT across 450 communities. The research question was about vaccines and electrification. The real question was: how do you build rigorous infrastructure in fragile systems?</p>
-          <p class="project-desc" data-en="Programmed complex ODK survey instruments with skip patterns and enumerator safeguards, designed sampling frameworks for 7,000+ households, and built real-time supervision dashboards that 150 enumerators, 5 supervisors, and 2 PIs used for daily field decisions. The vaccination arm contributed to evidence of a 26 percentage-point increase in uptake through last-mile mobile deployment." data-es="Programé instrumentos ODK complejos con patrones de salto y salvaguardas para encuestadores, diseñé marcos muestrales para 7,000+ hogares, y construí dashboards de supervisión en tiempo real que 150 encuestadores, 5 supervisores y 2 IPs usaban para decisiones de campo diarias. El brazo de vacunación contribuyó a evidencia de un aumento de 26 puntos porcentuales en cobertura mediante despliegue móvil de último kilómetro.">Programmed complex ODK survey instruments with skip patterns and enumerator safeguards, designed sampling frameworks for 7,000+ households, and built real-time supervision dashboards that 150 enumerators, 5 supervisors, and 2 PIs used for daily field decisions. The vaccination arm contributed to evidence of a 26 percentage-point increase in uptake through last-mile mobile deployment.</p>
-          <div class="project-methods"><span class="method-tag">ODK / SurveyCTO</span><span class="method-tag">Stata</span><span class="method-tag">Power calculations</span><span class="method-tag">RCT design</span></div>
-        </div>
-
-        <div class="project-card reveal">
-          <div class="project-header"><span class="project-number">04</span><div class="project-links"><a href="#" class="project-link-icon">GitHub</a></div></div>
-          <h3 class="project-title" data-en="Probabilistic Record Linkage — IDB" data-es="Vinculación Probabilística — BID">Probabilistic Record Linkage — IDB</h3>
-          <p class="project-question" data-en="Government databases in Jamaica and Suriname held millions of citizen records — in different formats, with different naming conventions, no shared ID. How do you link them without losing the people who fall through the cracks?" data-es="Las bases de datos gubernamentales en Jamaica y Surinam tenían millones de registros ciudadanos — en distintos formatos, distintas convenciones de nombre, sin ID compartido. ¿Cómo vincularlos sin perder a las personas que se pierden entre las grietas?">Government databases in Jamaica and Suriname held millions of citizen records — in different formats, with different naming conventions, no shared ID. How do you link them without losing the people who fall through the cracks?</p>
-          <p class="project-desc" data-en="Built a Python fuzzy-matching and probabilistic record-linkage algorithm for the IDB, reducing false matches across fragmented ministry databases and supporting 20–30 analysts working on two national RCTs. Also automated 6+ Stata analytical pipelines covering data cleaning, balance tests, attrition checks, and heterogeneity analysis." data-es="Construí un algoritmo de vinculación probabilística en Python para el BID, reduciendo coincidencias falsas en bases de datos ministeriales fragmentadas y apoyando a 20–30 analistas en dos EAA nacionales. También automaticé 6+ pipelines analíticos en Stata con limpieza de datos, pruebas de balance, verificaciones de desgaste y análisis de heterogeneidad.">Built a Python fuzzy-matching and probabilistic record-linkage algorithm for the IDB, reducing false matches across fragmented ministry databases and supporting 20–30 analysts working on two national RCTs. Also automated 6+ Stata analytical pipelines covering data cleaning, balance tests, attrition checks, and heterogeneity analysis.</p>
-          <div class="project-methods"><span class="method-tag">Python</span><span class="method-tag">Fuzzy matching</span><span class="method-tag">Stata</span><span class="method-tag">Causal inference</span></div>
-        </div>
-
       </div>
     </div>
     <footer>
@@ -652,7 +976,6 @@ footer {
     </footer>
   </div>
 
-  <!-- ── EXPERIENCE ── -->
   <div id="page-experience" class="page">
     <div class="page-banner">
       <img src="banner_experience.jpg" alt="">
@@ -662,79 +985,15 @@ footer {
       <p class="section-label" data-en="Career" data-es="Carrera">Career</p>
       <div class="divider"></div>
       <div class="timeline">
-
         <div class="tl-item reveal">
-          <div class="tl-date">Feb 2026<br>Present</div><div class="tl-line"></div>
+          <div class="tl-date">Feb 2026<br>Present</div>
+          <div class="tl-line"></div>
           <div class="tl-body">
-            <div class="tl-role" data-en="Research Assistant" data-es="Asistente de Investigación">Research Assistant</div>
+            <div class="tl-role">Research Assistant</div>
             <div class="tl-org">Development Innovation Lab · University of Chicago</div>
-            <p class="tl-desc" data-en="Supporting an impact evaluation on water access interventions and child mortality. Conducting power calculations, designing sampling strategies, and developing household survey instruments." data-es="Apoyando una evaluación de impacto sobre intervenciones de acceso al agua y mortalidad infantil. Realizando cálculos de poder, diseñando estrategias muestrales y desarrollando instrumentos de encuesta.">Supporting an impact evaluation on water access interventions and child mortality. Conducting power calculations, designing sampling strategies, and developing household survey instruments.</p>
+            <p class="tl-desc">Supporting an impact evaluation on water access interventions and child mortality.</p>
           </div>
         </div>
-
-        <div class="tl-item reveal">
-          <div class="tl-date">Sep 2024<br>May 2025</div><div class="tl-line"></div>
-          <div class="tl-body">
-            <div class="tl-role" data-en="Data Advisor" data-es="Asesora de Datos">Data Advisor</div>
-            <div class="tl-org">National Pension Office (ONP) · Lima, Peru</div>
-            <p class="tl-desc" data-en="Designed and deployed automated ETL pipelines transforming 45,000+ legal records into an operational database for 200+ attorneys. Power BI dashboards reduced reporting time by 40%." data-es="Diseñé y desplegué pipelines ETL automatizados que transformaron 45,000+ expedientes legales en una base de datos operacional para 200+ abogados. Los dashboards en Power BI redujeron el tiempo de reporte en 40%.">Designed and deployed automated ETL pipelines transforming 45,000+ legal records into an operational database for 200+ attorneys. Power BI dashboards reduced reporting time by 40%.</p>
-          </div>
-        </div>
-
-        <div class="tl-item reveal">
-          <div class="tl-date">Nov 2024<br>Jan 2025</div><div class="tl-line"></div>
-          <div class="tl-body">
-            <div class="tl-role">Consultant</div>
-            <div class="tl-org">Strategic Impact Evaluation Fund · World Bank</div>
-            <p class="tl-desc" data-en="Programmed ODK instruments for structured metadata collection for the IDEAL RCT repository." data-es="Programé instrumentos ODK para la recolección estructurada de metadatos para el repositorio IDEAL de EAA.">Programmed ODK instruments for structured metadata collection for the IDEAL RCT repository.</p>
-          </div>
-        </div>
-
-        <div class="tl-item reveal">
-          <div class="tl-date">Sep 2023<br>Sep 2024</div><div class="tl-line"></div>
-          <div class="tl-body">
-            <div class="tl-role" data-en="Research Consultant" data-es="Consultora de Investigación">Research Consultant</div>
-            <div class="tl-org">Wageningen University &amp; Yale University · Freetown, Sierra Leone</div>
-            <p class="tl-desc" data-en="National-scale RCT across 150–450 communities and 7,000+ households. Programmed complex survey instruments, designed sampling across treatment arms, and built real-time supervision dashboards for 150 enumerators. Contributed to evidence of a 26pp increase in vaccination uptake." data-es="EAA a escala nacional en 150–450 comunidades y 7,000+ hogares. Programé instrumentos complejos, diseñé muestreo entre brazos de tratamiento y construí dashboards de supervisión para 150 encuestadores. Contribuí a evidencia de un aumento de 26pp en cobertura de vacunación.">National-scale RCT across 150–450 communities and 7,000+ households. Programmed complex survey instruments, designed sampling across treatment arms, and built real-time supervision dashboards for 150 enumerators. Contributed to evidence of a 26pp increase in vaccination uptake.</p>
-          </div>
-        </div>
-
-        <div class="tl-item reveal">
-          <div class="tl-date">Mar–Aug 2023<br>Jul 2020–Jan 2021</div><div class="tl-line"></div>
-          <div class="tl-body">
-            <div class="tl-role" data-en="CCB Economics Data Analyst Consultant" data-es="Consultora Analista de Datos Económicos">CCB Economics Data Analyst Consultant</div>
-            <div class="tl-org">Inter-American Development Bank · Washington DC</div>
-            <p class="tl-desc" data-en="Automated 6+ analytical pipelines in Stata for two national RCTs (Jamaica &amp; Suriname). Built a Python fuzzy-matching algorithm for probabilistic record linkage across millions of citizen records, supporting 20–30 analysts." data-es="Automaticé 6+ pipelines analíticos en Stata para dos EAA nacionales (Jamaica y Surinam). Construí un algoritmo de vinculación probabilística en Python para millones de registros ciudadanos, apoyando a 20–30 analistas.">Automated 6+ analytical pipelines in Stata for two national RCTs (Jamaica &amp; Suriname). Built a Python fuzzy-matching algorithm for probabilistic record linkage across millions of citizen records, supporting 20–30 analysts.</p>
-          </div>
-        </div>
-
-        <div class="tl-item reveal">
-          <div class="tl-date">Jul–Oct 2022</div><div class="tl-line"></div>
-          <div class="tl-body">
-            <div class="tl-role" data-en="Project Manager" data-es="Gerente de Proyecto">Project Manager</div>
-            <div class="tl-org">J-PAL LAC · Santiago de Chile</div>
-            <p class="tl-desc" data-en="Led baseline implementation for a credit-behaviour RCT — instrument design, enumerator training, CATI workflows, quality control, and multi-country team coordination." data-es="Lideré la implementación de línea de base para una EAA de comportamiento crediticio — diseño de instrumentos, capacitación de encuestadores, flujos CATI, control de calidad y coordinación multi-país.">Led baseline implementation for a credit-behaviour RCT — instrument design, enumerator training, CATI workflows, quality control, and multi-country team coordination.</p>
-          </div>
-        </div>
-
-        <div class="tl-item reveal">
-          <div class="tl-date">Oct 2019<br>Jun 2020</div><div class="tl-line"></div>
-          <div class="tl-body">
-            <div class="tl-role" data-en="Research Analyst" data-es="Analista de Investigación">Research Analyst</div>
-            <div class="tl-org">Ministry of Education · Lima, Peru</div>
-            <p class="tl-desc" data-en="Built indicators on university quality, scholarship performance, and budget execution. Developed automated Stata/Excel workflows for a team of 250+ analysts and coordinators." data-es="Construí indicadores de calidad universitaria, desempeño de becas y ejecución presupuestal. Desarrollé flujos automatizados en Stata/Excel para un equipo de 250+ analistas y coordinadores.">Built indicators on university quality, scholarship performance, and budget execution. Developed automated Stata/Excel workflows for a team of 250+ analysts and coordinators.</p>
-          </div>
-        </div>
-
-        <div class="tl-item reveal">
-          <div class="tl-date">Aug 2016<br>Dec 2017</div><div class="tl-line"></div>
-          <div class="tl-body">
-            <div class="tl-role" data-en="Research Assistant" data-es="Asistente de Investigación">Research Assistant</div>
-            <div class="tl-org">Innovation for Poverty Action (IPA) · Lima, Peru</div>
-            <p class="tl-desc" data-en="Analyzed national datasets of 1,078 schools and 4,396 provider interactions; contributed to policy insights used by MINEDU to reform higher-education information policy. Contributed to a U.S. Department of Labor evaluation." data-es="Analicé bases de datos nacionales de 1,078 escuelas y 4,396 interacciones; contribuí a hallazgos usados por MINEDU para reformar la información en educación superior. Contribuí a una evaluación del Departamento de Trabajo de EE.UU.">Analyzed national datasets of 1,078 schools and 4,396 provider interactions; contributed to policy insights used by MINEDU to reform higher-education information policy. Contributed to a U.S. Department of Labor evaluation.</p>
-          </div>
-        </div>
-
       </div>
     </div>
     <footer>
@@ -743,7 +1002,6 @@ footer {
     </footer>
   </div>
 
-  <!-- ── SKILLS ── -->
   <div id="page-skills" class="page">
     <div class="page-banner">
       <img src="banner_skills.jpg" alt="">
@@ -754,20 +1012,8 @@ footer {
       <div class="divider"></div>
       <div class="skills-grid">
         <div class="skill-group reveal">
-          <h4 data-en="Languages" data-es="Lenguajes">Languages</h4>
+          <h4>Languages</h4>
           <div class="skill-tags"><span class="tag">Python</span><span class="tag">R</span><span class="tag">Stata</span><span class="tag">SQL</span></div>
-        </div>
-        <div class="skill-group reveal">
-          <h4 data-en="Libraries &amp; Tools" data-es="Librerías y Herramientas">Libraries &amp; Tools</h4>
-          <div class="skill-tags"><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">GeoPandas</span><span class="tag">Plotly</span><span class="tag">Power BI</span><span class="tag">QGIS</span><span class="tag">Git</span><span class="tag">SurveyCTO</span><span class="tag">ODK</span><span class="tag">LaTeX</span></div>
-        </div>
-        <div class="skill-group reveal">
-          <h4 data-en="Research Methods" data-es="Métodos de Investigación">Research Methods</h4>
-          <div class="skill-tags"><span class="tag">RCT Design</span><span class="tag">Power Calculations</span><span class="tag">Causal Inference</span><span class="tag">Policy Evaluation</span><span class="tag">Spatial Analysis</span><span class="tag">Sampling Design</span><span class="tag">ETL Pipelines</span><span class="tag">EDA</span></div>
-        </div>
-        <div class="skill-group reveal">
-          <h4 data-en="Domains" data-es="Dominios">Domains</h4>
-          <div class="skill-tags"><span class="tag">Civic Tech</span><span class="tag">Development Economics</span><span class="tag">Public Policy</span><span class="tag">Education Policy</span><span class="tag">Governance</span><span class="tag">Urban Data</span><span class="tag">Social Impact</span></div>
         </div>
       </div>
     </div>
@@ -777,7 +1023,6 @@ footer {
     </footer>
   </div>
 
-  <!-- ── CONTACT ── -->
   <div id="page-contact" class="page">
     <div class="page-banner">
       <img src="banner_contact.jpg" alt="">
@@ -788,28 +1033,12 @@ footer {
       <div class="divider"></div>
       <div class="contact-inner">
         <div class="contact-text reveal">
-          <p data-en="I am currently based in Chicago, finishing my MSc and working as a Research Assistant at UChicago's Development Innovation Lab. I am actively looking for summer 2026 internships and post-graduation opportunities in civic tech, public interest data science, policy research, and applied development economics."
-             data-es="Actualmente estoy en Chicago, terminando mi MSc y trabajando como Asistente de Investigación en el Development Innovation Lab de UChicago. Estoy buscando activamente prácticas de verano 2026 y oportunidades post-graduación en tecnología cívica, ciencia de datos de interés público, investigación de políticas y economía del desarrollo aplicada.">
-            I am currently based in Chicago, finishing my MSc and working as a Research Assistant at UChicago's Development Innovation Lab. I am actively looking for summer 2026 internships and post-graduation opportunities in civic tech, public interest data science, policy research, and applied development economics.
-          </p>
-          <p data-en="If you are working on problems at the intersection of data, institutions, and accountability — in government, research, or technology — I would like to hear from you."
-             data-es="Si trabajas en problemas en la intersección de datos, instituciones y rendición de cuentas — en gobierno, investigación o tecnología — me gustaría escucharte.">
-            If you are working on problems at the intersection of data, institutions, and accountability — in government, research, or technology — I would like to hear from you.
-          </p>
+          <p>I am currently based in Chicago, finishing my MSc and working as a Research Assistant at UChicago's Development Innovation Lab.</p>
         </div>
         <div class="contact-links reveal">
-          <a class="contact-link" href="mailto:mgcstrolivano@uchicago.edu">
-            <span class="icon">@</span> mgcstrolivano@uchicago.edu
-          </a>
-          <a class="contact-link" href="https://linkedin.com/in/marcygcl" target="_blank" rel="noopener">
-            <span class="icon">in</span> linkedin.com/in/marcygcl
-          </a>
-          <a class="contact-link" href="https://github.com/marcygcl" target="_blank" rel="noopener">
-            <span class="icon">gh</span> github.com/marcygcl
-          </a>
-          <div style="margin-top:.5rem;">
-            <a href="#" class="btn btn-outline" data-en="↓ Download CV" data-es="↓ Descargar CV">↓ Download CV</a>
-          </div>
+          <a class="contact-link" href="mailto:mgcstrolivano@uchicago.edu"><span class="icon">@</span> mgcstrolivano@uchicago.edu</a>
+          <a class="contact-link" href="https://linkedin.com/in/marcygcl" target="_blank" rel="noopener"><span class="icon">in</span> linkedin.com/in/marcygcl</a>
+          <a class="contact-link" href="https://github.com/marcygcl" target="_blank" rel="noopener"><span class="icon">gh</span> github.com/marcygcl</a>
         </div>
       </div>
     </div>
@@ -824,6 +1053,11 @@ footer {
 <script>
 var _lang = 'en';
 var _cur = 'home';
+var _pages = ['home', 'about', 'projects', 'experience', 'skills', 'contact'];
+var _isNavigatingByScroll = false;
+var _touchStartY = 0;
+var _touchCurrentY = 0;
+var _swipeThreshold = 70;
 
 function setActiveNav(name) {
   document.querySelectorAll('.nav-links a, .nav-drawer a').forEach(function(link) {
@@ -835,11 +1069,30 @@ function setActiveNav(name) {
   });
 }
 
+function getCurrentPageIndex() {
+  return _pages.indexOf(_cur);
+}
+
+function goNextPage() {
+  var i = getCurrentPageIndex();
+  if (i < _pages.length - 1) {
+    showPage(_pages[i + 1]);
+  }
+}
+
+function goPrevPage() {
+  var i = getCurrentPageIndex();
+  if (i > 0) {
+    showPage(_pages[i - 1]);
+  }
+}
+
 function showPage(name) {
   var currentPage = document.getElementById('page-' + _cur);
   var nextPage = document.getElementById('page-' + name);
 
   if (!nextPage) return;
+
   if (_cur === name) {
     closeDrawer();
     return;
@@ -874,7 +1127,7 @@ function toggleTheme() {
   var h = document.documentElement;
   var t = h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
   h.setAttribute('data-theme', t);
-  try { localStorage.setItem('mcl-theme', t); } catch(e) {}
+  try { localStorage.setItem('mcl-theme', t); } catch (e) {}
 }
 
 function toggleLang() {
@@ -888,8 +1141,58 @@ function toggleLang() {
   document.getElementById('lang-btn').textContent = _lang === 'en' ? 'ES' : 'EN';
 }
 
+function setupMobilePageScrollNavigation() {
+  var pages = document.querySelectorAll('.page');
+
+  pages.forEach(function(page) {
+    page.addEventListener('touchstart', function(e) {
+      if (window.innerWidth > 820) return;
+      if (!page.classList.contains('active')) return;
+      if (!e.touches || !e.touches.length) return;
+
+      _touchStartY = e.touches[0].clientY;
+      _touchCurrentY = _touchStartY;
+    }, { passive: true });
+
+    page.addEventListener('touchmove', function(e) {
+      if (window.innerWidth > 820) return;
+      if (!page.classList.contains('active')) return;
+      if (!e.touches || !e.touches.length) return;
+
+      _touchCurrentY = e.touches[0].clientY;
+    }, { passive: true });
+
+    page.addEventListener('touchend', function() {
+      if (window.innerWidth > 820) return;
+      if (!page.classList.contains('active')) return;
+      if (_isNavigatingByScroll) return;
+
+      var deltaY = _touchCurrentY - _touchStartY;
+      var atTop = page.scrollTop <= 0;
+      var atBottom = page.scrollTop + page.clientHeight >= page.scrollHeight - 2;
+
+      if (deltaY < -_swipeThreshold && atBottom) {
+        _isNavigatingByScroll = true;
+        goNextPage();
+        setTimeout(function() {
+          _isNavigatingByScroll = false;
+        }, 500);
+      }
+
+      if (deltaY > _swipeThreshold && atTop) {
+        _isNavigatingByScroll = true;
+        goPrevPage();
+        setTimeout(function() {
+          _isNavigatingByScroll = false;
+        }, 500);
+      }
+    }, { passive: true });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   setActiveNav('home');
+  setupMobilePageScrollNavigation();
 });
 </script>
 </body>
