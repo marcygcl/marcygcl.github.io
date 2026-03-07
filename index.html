@@ -818,99 +818,68 @@ footer {
 </div><!-- /pages-container -->
 
 <script>
-(function() {
-  var html = document.documentElement;
-  var lang = 'en';
-  var currentPage = 'home';
+  var _lang = 'en';
+  var _currentPage = 'home';
 
-  // ── PAGE NAVIGATION
-  window.showPage = function(name) {
-    var prev = document.getElementById('page-' + currentPage);
+  function showPage(name) {
+    var prev = document.getElementById('page-' + _currentPage);
     var next = document.getElementById('page-' + name);
-    if (!next || currentPage === name) return;
-
+    if (!next || _currentPage === name) return;
     prev.classList.remove('active');
     next.classList.add('active');
-    currentPage = name;
-
-    // Scroll the new page to top
+    _currentPage = name;
     next.scrollTop = 0;
-
-    // Update nav active state
-    document.querySelectorAll('.nav-links a').forEach(function(a) {
-      var matches = a.getAttribute('onclick') && a.getAttribute('onclick').indexOf("'" + name + "'") !== -1;
-      a.classList.toggle('active', matches);
+    document.querySelectorAll('.nav-links a[data-page]').forEach(function(a) {
+      a.classList.toggle('active', a.getAttribute('data-page') === name);
     });
-
-    // Trigger reveal animations for newly shown page
     setTimeout(function() {
-      next.querySelectorAll('.reveal').forEach(function(el) {
-        el.classList.remove('visible');
-      });
+      next.querySelectorAll('.reveal').forEach(function(el) { el.classList.remove('visible'); });
       setTimeout(function() {
-        if ('IntersectionObserver' in window) {
-          var obs = new IntersectionObserver(function(entries) {
-            entries.forEach(function(e) {
-              if (e.isIntersecting) {
-                e.target.classList.add('visible');
-                obs.unobserve(e.target);
-              }
-            });
-          }, { threshold: 0.05 });
-          next.querySelectorAll('.reveal').forEach(function(r) { obs.observe(r); });
-        } else {
-          next.querySelectorAll('.reveal').forEach(function(r) { r.classList.add('visible'); });
-        }
+        next.querySelectorAll('.reveal').forEach(function(el) { el.classList.add('visible'); });
       }, 60);
     }, 10);
-  };
+  }
 
-  window.addEventListener('DOMContentLoaded', function() {
+  function closeDrawer() {
+    var d = document.getElementById('drawer');
+    if (d) d.classList.remove('open');
+  }
 
-    // ── BIND ALL DATA-PAGE LINKS via event delegation
-    document.addEventListener('click', function(e) {
-      var el = e.target.closest('[data-page]');
-      if (!el) return;
+  document.addEventListener('click', function(e) {
+    // Page navigation
+    var pageEl = e.target.closest('[data-page]');
+    if (pageEl) {
       e.preventDefault();
-      var page = el.getAttribute('data-page');
-      showPage(page);
-      if (el.getAttribute('data-drawer')) closeDrawer();
-    });
-
-    // ── THEME
-    var themeBtn = document.getElementById('theme-btn');
-    if (themeBtn) {
-      themeBtn.addEventListener('click', function() {
-        var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        html.setAttribute('data-theme', next);
-        localStorage.setItem('mcl-theme', next);
+      showPage(pageEl.getAttribute('data-page'));
+      if (pageEl.hasAttribute('data-drawer')) closeDrawer();
+      return;
+    }
+    // Theme
+    if (e.target.closest('#theme-btn')) {
+      var dhtml = document.documentElement;
+      var next = dhtml.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      dhtml.setAttribute('data-theme', next);
+      try { localStorage.setItem('mcl-theme', next); } catch(err) {}
+      return;
+    }
+    // Language
+    if (e.target.closest('#lang-btn')) {
+      _lang = _lang === 'en' ? 'es' : 'en';
+      document.querySelectorAll('[data-en]').forEach(function(el) {
+        var t = el.getAttribute('data-' + _lang);
+        if (t) el.textContent = t;
       });
+      document.getElementById('lang-btn').textContent = _lang === 'en' ? 'ES' : 'EN';
+      document.documentElement.lang = _lang;
+      return;
     }
-
-    // ── LANGUAGE
-    var langBtn = document.getElementById('lang-btn');
-    if (langBtn) {
-      langBtn.addEventListener('click', function() {
-        lang = lang === 'en' ? 'es' : 'en';
-        document.querySelectorAll('[data-en]').forEach(function(el) {
-          var t = el.getAttribute('data-' + lang);
-          if (t) el.textContent = t;
-        });
-        langBtn.textContent = lang === 'en' ? 'ES' : 'EN';
-        html.lang = lang;
-      });
+    // Hamburger
+    if (e.target.closest('#hamburger')) {
+      var d = document.getElementById('drawer');
+      if (d) d.classList.toggle('open');
+      return;
     }
-
-    // ── HAMBURGER
-    var hamburger = document.getElementById('hamburger');
-    var drawer = document.getElementById('drawer');
-    if (hamburger && drawer) {
-      hamburger.addEventListener('click', function() { drawer.classList.toggle('open'); });
-    }
-    window.closeDrawer = function() { if (drawer) drawer.classList.remove('open'); };
-
   });
-})();
 </script>
 </body>
 </html>
