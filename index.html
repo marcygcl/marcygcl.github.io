@@ -424,22 +424,22 @@ footer {
 
 <!-- NAV -->
 <nav id="nav">
-  <button class="nav-logo" data-page="home">MCL</button>
+  <button class="nav-logo" onclick="showPage('home')">MCL</button>
   <ul class="nav-links">
-    <li><a href="#" data-page="about"      data-en="About"       data-es="Sobre mí">About</a></li>
-    <li><a href="#" data-page="projects"   data-en="Projects"    data-es="Proyectos">Projects</a></li>
-    <li><a href="#" data-page="experience" data-en="Experience"  data-es="Experiencia">Experience</a></li>
-    <li><a href="#" data-page="skills"     data-en="Skills"      data-es="Habilidades">Skills</a></li>
-    <li><a href="#" data-page="contact"    data-en="Contact"     data-es="Contacto">Contact</a></li>
+    <li><a href="#" onclick="showPage('about');return false;" data-en="About" data-es="Sobre mí">About</a></li>
+    <li><a href="#" onclick="showPage('projects');return false;" data-en="Projects" data-es="Proyectos">Projects</a></li>
+    <li><a href="#" onclick="showPage('experience');return false;" data-en="Experience" data-es="Experiencia">Experience</a></li>
+    <li><a href="#" onclick="showPage('skills');return false;" data-en="Skills" data-es="Habilidades">Skills</a></li>
+    <li><a href="#" onclick="showPage('contact');return false;" data-en="Contact" data-es="Contacto">Contact</a></li>
     <li><a href="#"               data-en="CV ↓"        data-es="CV ↓">CV ↓</a></li>
   </ul>
   <div class="nav-controls">
-    <button id="lang-btn" title="Switch language">ES</button>
-    <button id="theme-btn" title="Toggle theme">
+    <button id="lang-btn" title="Switch language" onclick="toggleLang()">ES</button>
+    <button id="theme-btn" title="Toggle theme" onclick="toggleTheme()">
       <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       <svg class="icon-sun"  viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
     </button>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
+    <button class="hamburger" id="hamburger" aria-label="Menu" onclick="document.getElementById('drawer').classList.toggle('open')">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -447,11 +447,11 @@ footer {
 
 <!-- MOBILE DRAWER -->
 <div class="nav-drawer" id="drawer">
-  <a href="#" data-page="about"      data-drawer="true" data-en="About"       data-es="Sobre mí">About</a>
-  <a href="#" data-page="projects"   data-drawer="true" data-en="Projects"    data-es="Proyectos">Projects</a>
-  <a href="#" data-page="experience" data-drawer="true" data-en="Experience"  data-es="Experiencia">Experience</a>
-  <a href="#" data-page="skills"     data-drawer="true" data-en="Skills"      data-es="Habilidades">Skills</a>
-  <a href="#" data-page="contact"    data-drawer="true" data-en="Contact"     data-es="Contacto">Contact</a>
+  <a href="#" onclick="showPage('about');closeDrawer();return false;" data-en="About" data-es="Sobre mí">About</a>
+  <a href="#" onclick="showPage('projects');closeDrawer();return false;" data-en="Projects" data-es="Proyectos">Projects</a>
+  <a href="#" onclick="showPage('experience');closeDrawer();return false;" data-en="Experience" data-es="Experiencia">Experience</a>
+  <a href="#" onclick="showPage('skills');closeDrawer();return false;" data-en="Skills" data-es="Habilidades">Skills</a>
+  <a href="#" onclick="showPage('contact');closeDrawer();return false;" data-en="Contact" data-es="Contacto">Contact</a>
 </div>
 
 <!-- PAGES CONTAINER -->
@@ -476,8 +476,8 @@ footer {
           I am a Peruvian economist and MSc student at the University of Chicago Harris School, working at the intersection of data science, public policy, and civic technology. I have designed field evaluations in Sierra Leone, automated institutional pipelines in Lima, and analyzed civic data in Chicago — always with the same question: how do we make systems work better for the people they are supposed to serve?
         </p>
         <div class="hero-links">
-          <a data-page="projects" class="btn btn-primary" data-en="View Work" data-es="Ver Trabajo">View Work</a>
-          <a data-page="contact" class="btn btn-outline"  data-en="Get in Touch" data-es="Contactar">Get in Touch</a>
+          <a href="#" onclick="showPage('projects');return false;" class="btn btn-primary" data-en="View Work" data-es="Ver Trabajo">View Work</a>
+          <a href="#" onclick="showPage('contact');return false;" class="btn btn-outline" data-en="Get in Touch" data-es="Contactar">Get in Touch</a>
         </div>
       </div>
       <div class="hero-visual">
@@ -823,58 +823,35 @@ var _cur = 'home';
 
 function showPage(name) {
   if (name === _cur) return;
-  var prev = document.getElementById('page-' + _cur);
-  var next = document.getElementById('page-' + name);
-  if (!prev || !next) return;
-  prev.classList.remove('active');
-  next.classList.add('active');
+  document.getElementById('page-' + _cur).classList.remove('active');
+  document.getElementById('page-' + name).classList.add('active');
   _cur = name;
-  next.scrollTop = 0;
-  // nav highlight
-  document.querySelectorAll('.nav-links a').forEach(function(a) {
-    a.classList.toggle('active', a.getAttribute('data-page') === name);
-  });
-  // reveal
+  document.getElementById('page-' + name).scrollTop = 0;
   setTimeout(function() {
-    next.querySelectorAll('.reveal').forEach(function(r) { r.classList.add('visible'); });
+    document.getElementById('page-' + name).querySelectorAll('.reveal')
+      .forEach(function(r) { r.classList.add('visible'); });
   }, 80);
 }
 
-window.onload = function() {
-  // nav links
-  document.querySelectorAll('[data-page]').forEach(function(el) {
-    el.onclick = function(e) {
-      e.preventDefault();
-      var pg = el.getAttribute('data-page');
-      showPage(pg);
-      var d = document.getElementById('drawer');
-      if (d) d.classList.remove('open');
-    };
+function closeDrawer() {
+  document.getElementById('drawer').classList.remove('open');
+}
+
+function toggleTheme() {
+  var h = document.documentElement;
+  var t = h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  h.setAttribute('data-theme', t);
+  try { localStorage.setItem('mcl-theme', t); } catch(e) {}
+}
+
+function toggleLang() {
+  _lang = _lang === 'en' ? 'es' : 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el) {
+    var t = el.getAttribute('data-' + _lang);
+    if (t) el.textContent = t;
   });
-
-  // theme
-  document.getElementById('theme-btn').onclick = function() {
-    var h = document.documentElement;
-    var t = h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    h.setAttribute('data-theme', t);
-    try { localStorage.setItem('mcl-theme', t); } catch(e) {}
-  };
-
-  // language
-  document.getElementById('lang-btn').onclick = function() {
-    _lang = _lang === 'en' ? 'es' : 'en';
-    document.querySelectorAll('[data-en]').forEach(function(el) {
-      var t = el.getAttribute('data-' + _lang);
-      if (t) el.textContent = t;
-    });
-    document.getElementById('lang-btn').textContent = _lang === 'en' ? 'ES' : 'EN';
-  };
-
-  // hamburger
-  document.getElementById('hamburger').onclick = function() {
-    document.getElementById('drawer').classList.toggle('open');
-  };
-};
+  document.getElementById('lang-btn').textContent = _lang === 'en' ? 'ES' : 'EN';
+}
 </script>
 </body>
 </html>
