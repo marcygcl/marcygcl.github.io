@@ -107,7 +107,7 @@ nav {
 }
 .nav-logo {
   font-family: var(--serif); font-size: 1.05rem; font-weight: 500; letter-spacing: .02em;
-  cursor: pointer;
+  cursor: pointer; background: none; border: none; color: var(--ink); padding: 0;
 }
 .nav-links { display: flex; gap: 2rem; align-items: center; }
 .nav-links a {
@@ -424,13 +424,13 @@ footer {
 
 <!-- NAV -->
 <nav id="nav">
-  <div class="nav-logo" data-page="home">MCL</div>
+  <button class="nav-logo" data-page="home">MCL</button>
   <ul class="nav-links">
-    <li><a data-page="about"      data-en="About"       data-es="Sobre mí">About</a></li>
-    <li><a data-page="projects"   data-en="Projects"    data-es="Proyectos">Projects</a></li>
-    <li><a data-page="experience" data-en="Experience"  data-es="Experiencia">Experience</a></li>
-    <li><a data-page="skills"     data-en="Skills"      data-es="Habilidades">Skills</a></li>
-    <li><a data-page="contact"    data-en="Contact"     data-es="Contacto">Contact</a></li>
+    <li><a href="#" data-page="about"      data-en="About"       data-es="Sobre mí">About</a></li>
+    <li><a href="#" data-page="projects"   data-en="Projects"    data-es="Proyectos">Projects</a></li>
+    <li><a href="#" data-page="experience" data-en="Experience"  data-es="Experiencia">Experience</a></li>
+    <li><a href="#" data-page="skills"     data-en="Skills"      data-es="Habilidades">Skills</a></li>
+    <li><a href="#" data-page="contact"    data-en="Contact"     data-es="Contacto">Contact</a></li>
     <li><a href="#"               data-en="CV ↓"        data-es="CV ↓">CV ↓</a></li>
   </ul>
   <div class="nav-controls">
@@ -447,11 +447,11 @@ footer {
 
 <!-- MOBILE DRAWER -->
 <div class="nav-drawer" id="drawer">
-  <a data-page="about"      data-drawer="true" data-en="About"       data-es="Sobre mí">About</a>
-  <a data-page="projects"   data-drawer="true" data-en="Projects"    data-es="Proyectos">Projects</a>
-  <a data-page="experience" data-drawer="true" data-en="Experience"  data-es="Experiencia">Experience</a>
-  <a data-page="skills"     data-drawer="true" data-en="Skills"      data-es="Habilidades">Skills</a>
-  <a data-page="contact"    data-drawer="true" data-en="Contact"     data-es="Contacto">Contact</a>
+  <a href="#" data-page="about"      data-drawer="true" data-en="About"       data-es="Sobre mí">About</a>
+  <a href="#" data-page="projects"   data-drawer="true" data-en="Projects"    data-es="Proyectos">Projects</a>
+  <a href="#" data-page="experience" data-drawer="true" data-en="Experience"  data-es="Experiencia">Experience</a>
+  <a href="#" data-page="skills"     data-drawer="true" data-en="Skills"      data-es="Habilidades">Skills</a>
+  <a href="#" data-page="contact"    data-drawer="true" data-en="Contact"     data-es="Contacto">Contact</a>
 </div>
 
 <!-- PAGES CONTAINER -->
@@ -845,41 +845,43 @@ footer {
     if (d) d.classList.remove('open');
   }
 
-  document.addEventListener('click', function(e) {
-    // Page navigation
-    var pageEl = e.target.closest('[data-page]');
-    if (pageEl) {
-      e.preventDefault();
-      showPage(pageEl.getAttribute('data-page'));
-      if (pageEl.hasAttribute('data-drawer')) closeDrawer();
-      return;
-    }
+  // Attach directly to each interactive element — more reliable than delegation
+  function bindNav() {
+    // Page links
+    document.querySelectorAll('[data-page]').forEach(function(el) {
+      el.addEventListener('click', function(e) {
+        e.preventDefault();
+        showPage(el.getAttribute('data-page'));
+        if (el.hasAttribute('data-drawer')) closeDrawer();
+      });
+    });
     // Theme
-    if (e.target.closest('#theme-btn')) {
+    var tb = document.getElementById('theme-btn');
+    if (tb) tb.addEventListener('click', function() {
       var dhtml = document.documentElement;
       var next = dhtml.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       dhtml.setAttribute('data-theme', next);
       try { localStorage.setItem('mcl-theme', next); } catch(err) {}
-      return;
-    }
+    });
     // Language
-    if (e.target.closest('#lang-btn')) {
+    var lb = document.getElementById('lang-btn');
+    if (lb) lb.addEventListener('click', function() {
       _lang = _lang === 'en' ? 'es' : 'en';
       document.querySelectorAll('[data-en]').forEach(function(el) {
         var t = el.getAttribute('data-' + _lang);
         if (t) el.textContent = t;
       });
-      document.getElementById('lang-btn').textContent = _lang === 'en' ? 'ES' : 'EN';
+      lb.textContent = _lang === 'en' ? 'ES' : 'EN';
       document.documentElement.lang = _lang;
-      return;
-    }
+    });
     // Hamburger
-    if (e.target.closest('#hamburger')) {
+    var hb = document.getElementById('hamburger');
+    if (hb) hb.addEventListener('click', function() {
       var d = document.getElementById('drawer');
       if (d) d.classList.toggle('open');
-      return;
-    }
-  });
+    });
+  }
+  bindNav();
 </script>
 </body>
 </html>
