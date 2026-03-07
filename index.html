@@ -381,20 +381,57 @@ footer {
     padding: 3rem 0 4rem;
   }
 }
+
+/* ── PAGE BANNERS ── */
+.page-banner {
+  width: 100%;
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+.page-banner img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: sepia(18%) brightness(0.88) contrast(1.05);
+}
+.page-banner::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 30%,
+    var(--bg) 100%
+  );
+}
+.page-banner-title {
+  position: absolute;
+  bottom: 1.8rem; left: 2.5rem;
+  z-index: 2;
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 300;
+  font-style: italic;
+  color: #fff;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.35);
+  letter-spacing: .01em;
+}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav id="nav">
-  <div class="nav-logo" onclick="showPage('home')">MCL</div>
+  <div class="nav-logo" data-page="home">MCL</div>
   <ul class="nav-links">
-    <li><a onclick="showPage('about')"      data-en="About"       data-es="Sobre mí">About</a></li>
-    <li><a onclick="showPage('projects')"   data-en="Projects"    data-es="Proyectos">Projects</a></li>
-    <li><a onclick="showPage('experience')" data-en="Experience"  data-es="Experiencia">Experience</a></li>
-    <li><a onclick="showPage('skills')"     data-en="Skills"      data-es="Habilidades">Skills</a></li>
-    <li><a onclick="showPage('contact')"    data-en="Contact"     data-es="Contacto">Contact</a></li>
-    <li><a href="#"                         data-en="CV ↓"        data-es="CV ↓">CV ↓</a></li>
+    <li><a data-page="about"      data-en="About"       data-es="Sobre mí">About</a></li>
+    <li><a data-page="projects"   data-en="Projects"    data-es="Proyectos">Projects</a></li>
+    <li><a data-page="experience" data-en="Experience"  data-es="Experiencia">Experience</a></li>
+    <li><a data-page="skills"     data-en="Skills"      data-es="Habilidades">Skills</a></li>
+    <li><a data-page="contact"    data-en="Contact"     data-es="Contacto">Contact</a></li>
+    <li><a href="#"               data-en="CV ↓"        data-es="CV ↓">CV ↓</a></li>
   </ul>
   <div class="nav-controls">
     <button id="lang-btn" title="Switch language">ES</button>
@@ -410,11 +447,11 @@ footer {
 
 <!-- MOBILE DRAWER -->
 <div class="nav-drawer" id="drawer">
-  <a onclick="showPage('about');closeDrawer()"      data-en="About"       data-es="Sobre mí">About</a>
-  <a onclick="showPage('projects');closeDrawer()"   data-en="Projects"    data-es="Proyectos">Projects</a>
-  <a onclick="showPage('experience');closeDrawer()" data-en="Experience"  data-es="Experiencia">Experience</a>
-  <a onclick="showPage('skills');closeDrawer()"     data-en="Skills"      data-es="Habilidades">Skills</a>
-  <a onclick="showPage('contact');closeDrawer()"    data-en="Contact"     data-es="Contacto">Contact</a>
+  <a data-page="about"      data-drawer="true" data-en="About"       data-es="Sobre mí">About</a>
+  <a data-page="projects"   data-drawer="true" data-en="Projects"    data-es="Proyectos">Projects</a>
+  <a data-page="experience" data-drawer="true" data-en="Experience"  data-es="Experiencia">Experience</a>
+  <a data-page="skills"     data-drawer="true" data-en="Skills"      data-es="Habilidades">Skills</a>
+  <a data-page="contact"    data-drawer="true" data-en="Contact"     data-es="Contacto">Contact</a>
 </div>
 
 <!-- PAGES CONTAINER -->
@@ -439,8 +476,8 @@ footer {
           I am a Peruvian economist and MSc student at the University of Chicago Harris School, working at the intersection of data science, public policy, and civic technology. I have designed field evaluations in Sierra Leone, automated institutional pipelines in Lima, and analyzed civic data in Chicago — always with the same question: how do we make systems work better for the people they are supposed to serve?
         </p>
         <div class="hero-links">
-          <a onclick="showPage('projects')" class="btn btn-primary" data-en="View Work" data-es="Ver Trabajo">View Work</a>
-          <a onclick="showPage('contact')"  class="btn btn-outline"  data-en="Get in Touch" data-es="Contactar">Get in Touch</a>
+          <a data-page="projects" class="btn btn-primary" data-en="View Work" data-es="Ver Trabajo">View Work</a>
+          <a data-page="contact" class="btn btn-outline"  data-en="Get in Touch" data-es="Contactar">Get in Touch</a>
         </div>
       </div>
       <div class="hero-visual">
@@ -465,9 +502,12 @@ footer {
 
   <!-- ── ABOUT ── -->
   <div id="page-about" class="page">
+    <div class="page-banner">
+      <img src="banner_about.jpg" alt="">
+      <span class="page-banner-title" data-en="About Me" data-es="Sobre Mí">About Me</span>
+    </div>
     <div class="wrap">
       <p class="section-label" data-en="Background" data-es="Trayectoria">Background</p>
-      <h2 class="section-title" data-en="About Me" data-es="Sobre Mí">About Me</h2>
       <div class="divider"></div>
       <div class="about-grid">
         <div class="about-text reveal">
@@ -519,9 +559,12 @@ footer {
 
   <!-- ── PROJECTS ── -->
   <div id="page-projects" class="page">
+    <div class="page-banner">
+      <img src="banner_projects.jpg" alt="">
+      <span class="page-banner-title" data-en="Projects" data-es="Proyectos">Projects</span>
+    </div>
     <div class="wrap">
       <p class="section-label" data-en="Selected Work" data-es="Trabajo Seleccionado">Selected Work</p>
-      <h2 class="section-title" data-en="Projects" data-es="Proyectos">Projects</h2>
       <div class="divider"></div>
       <div class="projects-grid">
 
@@ -607,9 +650,12 @@ footer {
 
   <!-- ── EXPERIENCE ── -->
   <div id="page-experience" class="page">
+    <div class="page-banner">
+      <img src="banner_experience.jpg" alt="">
+      <span class="page-banner-title" data-en="Experience" data-es="Experiencia">Experience</span>
+    </div>
     <div class="wrap">
       <p class="section-label" data-en="Career" data-es="Carrera">Career</p>
-      <h2 class="section-title" data-en="Experience" data-es="Experiencia">Experience</h2>
       <div class="divider"></div>
       <div class="timeline">
 
@@ -695,9 +741,12 @@ footer {
 
   <!-- ── SKILLS ── -->
   <div id="page-skills" class="page">
+    <div class="page-banner">
+      <img src="banner_skills.jpg" alt="">
+      <span class="page-banner-title" data-en="Skills &amp; Methods" data-es="Habilidades y Métodos">Skills &amp; Methods</span>
+    </div>
     <div class="wrap">
       <p class="section-label" data-en="Toolkit" data-es="Herramientas">Toolkit</p>
-      <h2 class="section-title" data-en="Skills &amp; Methods" data-es="Habilidades y Métodos">Skills &amp; Methods</h2>
       <div class="divider"></div>
       <div class="skills-grid">
         <div class="skill-group reveal">
@@ -726,9 +775,12 @@ footer {
 
   <!-- ── CONTACT ── -->
   <div id="page-contact" class="page">
+    <div class="page-banner">
+      <img src="banner_contact.jpg" alt="">
+      <span class="page-banner-title" data-en="Contact" data-es="Contacto">Contact</span>
+    </div>
     <div class="wrap">
       <p class="section-label" data-en="Get in Touch" data-es="Contacto">Get in Touch</p>
-      <h2 class="section-title" data-en="Contact" data-es="Contacto">Contact</h2>
       <div class="divider"></div>
       <div class="contact-inner">
         <div class="contact-text reveal">
@@ -815,17 +867,15 @@ footer {
 
   window.addEventListener('DOMContentLoaded', function() {
 
-    // Initial reveal for home page (no reveal elements, but set up for others)
-    setTimeout(function() {
-      if ('IntersectionObserver' in window) {
-        var obs = new IntersectionObserver(function(entries) {
-          entries.forEach(function(e) {
-            if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
-          });
-        }, { threshold: 0.05 });
-        document.getElementById('page-home').querySelectorAll('.reveal').forEach(function(r) { obs.observe(r); });
-      }
-    }, 100);
+    // ── BIND ALL DATA-PAGE LINKS via event delegation
+    document.addEventListener('click', function(e) {
+      var el = e.target.closest('[data-page]');
+      if (!el) return;
+      e.preventDefault();
+      var page = el.getAttribute('data-page');
+      showPage(page);
+      if (el.getAttribute('data-drawer')) closeDrawer();
+    });
 
     // ── THEME
     var themeBtn = document.getElementById('theme-btn');
