@@ -818,70 +818,64 @@ footer {
 </div><!-- /pages-container -->
 
 <script>
-  var _lang = 'en';
-  var _currentPage = 'home';
+var _lang = 'en';
+var _cur = 'home';
 
-  function showPage(name) {
-    var prev = document.getElementById('page-' + _currentPage);
-    var next = document.getElementById('page-' + name);
-    if (!next || _currentPage === name) return;
-    prev.classList.remove('active');
-    next.classList.add('active');
-    _currentPage = name;
-    next.scrollTop = 0;
-    document.querySelectorAll('.nav-links a[data-page]').forEach(function(a) {
-      a.classList.toggle('active', a.getAttribute('data-page') === name);
-    });
-    setTimeout(function() {
-      next.querySelectorAll('.reveal').forEach(function(el) { el.classList.remove('visible'); });
-      setTimeout(function() {
-        next.querySelectorAll('.reveal').forEach(function(el) { el.classList.add('visible'); });
-      }, 60);
-    }, 10);
-  }
+function showPage(name) {
+  if (name === _cur) return;
+  var prev = document.getElementById('page-' + _cur);
+  var next = document.getElementById('page-' + name);
+  if (!prev || !next) return;
+  prev.classList.remove('active');
+  next.classList.add('active');
+  _cur = name;
+  next.scrollTop = 0;
+  // nav highlight
+  document.querySelectorAll('.nav-links a').forEach(function(a) {
+    a.classList.toggle('active', a.getAttribute('data-page') === name);
+  });
+  // reveal
+  setTimeout(function() {
+    next.querySelectorAll('.reveal').forEach(function(r) { r.classList.add('visible'); });
+  }, 80);
+}
 
-  function closeDrawer() {
-    var d = document.getElementById('drawer');
-    if (d) d.classList.remove('open');
-  }
-
-  // Attach directly to each interactive element — more reliable than delegation
-  function bindNav() {
-    // Page links
-    document.querySelectorAll('[data-page]').forEach(function(el) {
-      el.addEventListener('click', function(e) {
-        e.preventDefault();
-        showPage(el.getAttribute('data-page'));
-        if (el.hasAttribute('data-drawer')) closeDrawer();
-      });
-    });
-    // Theme
-    var tb = document.getElementById('theme-btn');
-    if (tb) tb.addEventListener('click', function() {
-      var dhtml = document.documentElement;
-      var next = dhtml.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      dhtml.setAttribute('data-theme', next);
-      try { localStorage.setItem('mcl-theme', next); } catch(err) {}
-    });
-    // Language
-    var lb = document.getElementById('lang-btn');
-    if (lb) lb.addEventListener('click', function() {
-      _lang = _lang === 'en' ? 'es' : 'en';
-      document.querySelectorAll('[data-en]').forEach(function(el) {
-        var t = el.getAttribute('data-' + _lang);
-        if (t) el.textContent = t;
-      });
-      lb.textContent = _lang === 'en' ? 'ES' : 'EN';
-      document.documentElement.lang = _lang;
-    });
-    // Hamburger
-    var hb = document.getElementById('hamburger');
-    if (hb) hb.addEventListener('click', function() {
+window.onload = function() {
+  // nav links
+  document.querySelectorAll('[data-page]').forEach(function(el) {
+    el.onclick = function(e) {
+      e.preventDefault();
+      var pg = el.getAttribute('data-page');
+      showPage(pg);
       var d = document.getElementById('drawer');
-      if (d) d.classList.toggle('open');
+      if (d) d.classList.remove('open');
+    };
+  });
+
+  // theme
+  document.getElementById('theme-btn').onclick = function() {
+    var h = document.documentElement;
+    var t = h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    h.setAttribute('data-theme', t);
+    try { localStorage.setItem('mcl-theme', t); } catch(e) {}
+  };
+
+  // language
+  document.getElementById('lang-btn').onclick = function() {
+    _lang = _lang === 'en' ? 'es' : 'en';
+    document.querySelectorAll('[data-en]').forEach(function(el) {
+      var t = el.getAttribute('data-' + _lang);
+      if (t) el.textContent = t;
     });
-  }
-  bindNav();
+    document.getElementById('lang-btn').textContent = _lang === 'en' ? 'ES' : 'EN';
+  };
+
+  // hamburger
+  document.getElementById('hamburger').onclick = function() {
+    document.getElementById('drawer').classList.toggle('open');
+  };
+};
 </script>
 </body>
 </html>
+
